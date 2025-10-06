@@ -1,0 +1,12 @@
+# Robots.txt for jaab.tech
+# Allow all search engines to index the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://jaab.tech/sitemap.xml
+
+# Disallow admin/system directories (if any exist in future)
+Disallow: /admin/
+Disallow: /.git/
