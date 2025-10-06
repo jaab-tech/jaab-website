@@ -111,7 +111,7 @@ The built site will be in the `_site/` directory.
 ├── index.html               # Spanish homepage (minimal, includes template)
 ├── .github/
 │   └── workflows/
-│       └── jekyll.yml       # GitHub Actions CI/CD pipeline
+│       └── deploy.yml       # GitHub Actions CI/CD pipeline (deploys to public repo)
 └── README.md                # This file
 ```
 
