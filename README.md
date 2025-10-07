@@ -98,16 +98,19 @@ The built site will be in the `_site/` directory.
 │   ├── js/
 │   │   └── main.js          # JavaScript (mobile menu, form validation, language switching)
 │   └── images/              # Images and assets
+├── cobol.html               # Redirect to Modern COBOL section (Spanish)
 ├── en/                      # English pages
 │   ├── index.html           # English homepage (minimal, includes template)
+│   ├── cobol.html           # Redirect to Modern COBOL section (English)
 │   └── solutions/
-│       └── ebs-modernization.html
+│       └── modernization.html  # EBS Modernization solution page
 ├── pt/                      # Portuguese pages
 │   ├── index.html           # Portuguese homepage (minimal, includes template)
+│   ├── cobol.html           # Redirect to Modern COBOL section (Portuguese)
 │   └── solucoes/
-│       └── ebs-modernizacao.html
+│       └── modernizacao.html   # EBS Modernization solution page (PT)
 ├── soluciones/              # Spanish solution pages
-│   └── ebs-modernizacion.html
+│   └── modernizacion.html   # EBS Modernization solution page (ES)
 ├── index.html               # Spanish homepage (minimal, includes template)
 ├── .github/
 │   └── workflows/

@@ -8,6 +8,37 @@ function toggleService(serviceId) {
     serviceCard.classList.toggle('active');
 }
 
+// Make toggleService globally accessible
+window.toggleService = toggleService;
+
+// Toggle technology category sections
+function toggleTechCategory(categoryId) {
+    console.log('toggleTechCategory called with ID:', categoryId);
+    const categoryContent = document.getElementById(categoryId);
+    
+    if (!categoryContent) {
+        console.error('Could not find element with ID:', categoryId);
+        return;
+    }
+    
+    const categoryCard = categoryContent.closest('.tech-category');
+    
+    if (!categoryCard) {
+        console.error('Could not find parent .tech-category for:', categoryId);
+        return;
+    }
+    
+    // Toggle show class
+    categoryContent.classList.toggle('show');
+    categoryCard.classList.toggle('active');
+    
+    console.log('Toggled - Content has .show:', categoryContent.classList.contains('show'), 
+                'Card has .active:', categoryCard.classList.contains('active'));
+}
+
+// Make toggleTechCategory globally accessible
+window.toggleTechCategory = toggleTechCategory;
+
 // Mobile menu toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');

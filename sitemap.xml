@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://jaab.tech/pt/solucoes/ebs-modernizacao/</loc>
-</url>
-<url>
-<loc>https://jaab.tech/soluciones/ebs-modernizacion/</loc>
-</url>
-<url>
-<loc>https://jaab.tech/en/solutions/ebs-modernization/</loc>
-</url>
-<url>
 <loc>https://jaab.tech/en/</loc>
 </url>
 <url>
@@ -17,6 +8,15 @@
 </url>
 <url>
 <loc>https://jaab.tech/</loc>
+</url>
+<url>
+<loc>https://jaab.tech/pt/solucoes/modernizacao/</loc>
+</url>
+<url>
+<loc>https://jaab.tech/soluciones/modernizacion/</loc>
+</url>
+<url>
+<loc>https://jaab.tech/en/solutions/modernization/</loc>
 </url>
 <url>
 <loc>https://jaab.tech/privacy/</loc>
