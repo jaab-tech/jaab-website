@@ -305,7 +305,29 @@
   <div class="container">
     <div class="section-intro">
       <h2 class="section-title">Contact</h2>
-      <p class="section-lead">Ready to transform your technology infrastructure? Let's talk.</p>
+      <p class="section-lead">Ready to transform your technology infrastructure?</p>
+    </div>
+
+    <!-- Calendly Modal (Initially Hidden) -->
+    <div id="calendly-modal" class="calendly-modal" style="display: none;">
+      <div class="calendly-modal-overlay"></div>
+      <div class="calendly-modal-content">
+        <button class="calendly-modal-close" id="close-calendly" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="calendly-wrapper">
+          <iframe 
+            src="https://calendly.com/antoniuk/initial-consultancy-contact" 
+            width="100%" 
+            height="100%" 
+            frameborder="0"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
     </div>
 
     <div class="contact-grid">
@@ -1202,10 +1224,16 @@
             <label for="message">Message *</label>
             <textarea id="message" name="entry.839337160" rows="5" required></textarea>
           </div>
-
-          <button type="submit" class="btn btn-primary btn-block">Send message</button>
         </form>
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        
+        <!-- Submit Button -->
+        <button type="submit" form="contact-form" class="btn btn-primary btn-action btn-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          Send message
+        </button>
       </div>
 
       <div class="contact-info-wrapper">
@@ -1226,7 +1254,7 @@
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d817.1247069644534!2d-56.166156030436926!3d-34.90236249999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f80ffc63bf7d1%3A0x6b8e0e3f4d107d44!2sRambla%2025%20de%20Agosto%20de%201825%20292%2C%2011000%20Montevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1sen!2s!4v1733618400000!5m2!1sen!2s" 
             width="100%" 
-            height="350" 
+            height="200" 
             style="border:0;" 
             allowfullscreen="" 
             loading="lazy" 
@@ -1234,6 +1262,17 @@
           </iframe>
           
         </div>
+
+        <!-- Schedule Button -->
+        <button type="button" class="btn btn-primary btn-action btn-full" id="schedule-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Schedule a meeting
+        </button>
       </div>
     </div>
   </div>
@@ -1260,6 +1299,17 @@
                 </svg>
               </a>
             </h4>
+            <p class="footer-schedule-link">
+              <a href="/en/#contact" onclick="event.preventDefault(); window.location.href='/en/#contact'; setTimeout(function(){ if(typeof toggleCalendly === 'function') toggleCalendly(); }, 500);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Schedule meeting >
+              </a>
+            </p>
             <p>No18 El Globo - Rambla 25 de Agosto 292, 11000 Montevideo, Uruguay.</p>
           </div>
 

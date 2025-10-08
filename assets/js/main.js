@@ -39,8 +39,101 @@ function toggleTechCategory(categoryId) {
 // Make toggleTechCategory globally accessible
 window.toggleTechCategory = toggleTechCategory;
 
+// Toggle Calendly modal
+function toggleCalendly() {
+    const modal = document.getElementById('calendly-modal');
+    const btn = document.getElementById('schedule-btn');
+    
+    if (!modal) {
+        console.error('Calendly modal not found!');
+        return;
+    }
+    
+    if (modal.style.display === 'none' || modal.style.display === '') {
+        // Show modal
+        modal.style.display = 'flex';
+        if (btn) btn.classList.add('active');
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+        // Add animation class
+        setTimeout(() => modal.classList.add('show'), 10);
+    } else {
+        // Hide modal
+        closeCalendly();
+    }
+}
+
+// Close Calendly modal
+function closeCalendly() {
+    const modal = document.getElementById('calendly-modal');
+    const btn = document.getElementById('schedule-btn');
+    
+    if (!modal) return;
+    
+    modal.classList.remove('show');
+    if (btn) btn.classList.remove('active');
+    // Restore body scroll
+    document.body.style.overflow = '';
+    // Wait for animation to finish before hiding
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+// Make functions globally accessible
+window.toggleCalendly = toggleCalendly;
+window.closeCalendly = closeCalendly;
+
 // Mobile menu toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Attach Calendly toggle button event listener
+    const scheduleBtn = document.getElementById('schedule-btn');
+    if (scheduleBtn) {
+        scheduleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCalendly();
+        });
+    }
+
+    // Attach close button event listener
+    const closeBtn = document.getElementById('close-calendly');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeCalendly();
+        });
+    }
+
+    // Close modal when clicking outside (on overlay)
+    const calendlyModal = document.getElementById('calendly-modal');
+    if (calendlyModal) {
+        calendlyModal.addEventListener('click', function(e) {
+            // Only close if clicking directly on the modal (overlay), not on content
+            if (e.target === calendlyModal || e.target.classList.contains('calendly-modal-overlay')) {
+                closeCalendly();
+            }
+        });
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('calendly-modal');
+            if (modal && modal.style.display === 'flex') {
+                closeCalendly();
+            }
+        }
+    });
+
+    // Auto-open Calendly modal if ?meet=true parameter is present
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('meet') === 'true') {
+        // Wait a moment for the page to render, then open modal
+        setTimeout(function() {
+            toggleCalendly();
+        }, 300);
+    }
+
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelector('.nav-links');
