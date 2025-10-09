@@ -1,5 +1,12 @@
 # Auto-Generated Redirect System
 
+## Architecture Principles
+
+**Separation of Concerns:**
+- **Data Layer** (`_data/redirects.yml`): Contains all URLs, labels, and configuration
+- **Logic Layer** (`_plugins/redirect_generator.rb`): Handles only HTML generation logic
+- **No Hardcoding**: All redirect-specific data is stored in YAML, making the system maintainable and scalable
+
 ## Overview
 
 All redirect pages are **automatically generated at build time** from a central configuration file. No need to manually create individual HTML files!
@@ -8,20 +15,36 @@ All redirect pages are **automatically generated at build time** from a central 
 
 ### 1. Configuration File: `_data/redirects.yml`
 
-All redirect rules are defined in a single YAML file:
+All redirect rules are defined in a single YAML file with complete separation of data from logic:
 
 ```yaml
 contact:
+  # Language detection redirect - all URLs and labels in YAML
   - from: /contact/
     to: null  # null = language detection
-    title: "Contact / Contacto / Contato"
+    title: "Contact"
     fallback: "/#contact"
+    targets:
+      es: "/#contact"
+      en: "/en/#contact"
+      pt: "/pt/#contact"
+    labels:
+      es: "Contacto (ES)"
+      en: "Contact (EN)"
+      pt: "Contato (PT)"
   
+  # Simple redirect
   - from: /contacto/
     to: "/#contact"
     title: "Contacto"
     lang: es
 ```
+
+**Key Features:**
+- `targets`: Defines where each language redirects to
+- `labels`: Defines the text shown for each language link
+- `fallback`: Default URL for browsers without JavaScript
+- No hardcoded URLs in the Ruby plugin!
 
 ### 2. Generator Plugin: `_plugins/redirect_generator.rb`
 
@@ -95,28 +118,49 @@ Direct URL → URL mapping with instant redirect.
 ```
 
 ### 2. Language Detection Redirects
-Smart redirects that detect user's language preference.
+Smart redirects that detect user's language preference. All URLs and labels come from YAML configuration.
 
 ```yaml
 - from: /contact/
   to: null  # triggers language detection
   title: "Contact"
   fallback: "/#contact"
+  targets:
+    es: "/#contact"
+    en: "/en/#contact"
+    pt: "/pt/#contact"
+  labels:
+    es: "Contacto (ES)"
+    en: "Contact (EN)"
+    pt: "Contato (PT)"
 ```
 
-Detection order:
+**Detection order:**
 1. Saved preference (`localStorage.jaab_preferred_lang`)
 2. Browser language (`navigator.language`)
 3. Fallback to Spanish
 
+**Benefits:**
+- Add new languages by editing YAML only
+- Change target URLs without touching Ruby code
+- Customize labels per redirect type
+
 ### 3. Section-Specific Redirects
-Redirects to specific page sections (e.g., `#cobolcloud`, `#contact`).
+Redirects to specific page sections (e.g., `#cobolcloud`, `#contact`). Same data-driven approach.
 
 ```yaml
 - from: /cobol/
   to: null
-  section: "cobolcloud"
+  title: "COBOL"
   fallback: "/soluciones/modernizacion#cobolcloud"
+  targets:
+    es: "/soluciones/modernizacion#cobolcloud"
+    en: "/en/solutions/modernization#cobolcloud"
+    pt: "/pt/solucoes/modernizacao#cobolcloud"
+  labels:
+    es: "COBOL (ES)"
+    en: "COBOL (EN)"
+    pt: "COBOL (PT)"
 ```
 
 ### 4. External Redirects
@@ -200,37 +244,45 @@ No special deployment steps needed! The redirects are generated as static HTML f
 
 ### Adding New Redirect Groups
 
-Edit `_data/redirects.yml`:
+Thanks to the data-driven architecture, adding new redirects is simple. Just edit `_data/redirects.yml`:
 
 ```yaml
-# Example: Schedule/Calendly redirects
-schedule:
-  - from: /schedule/
+# Example: Adding a new product redirect
+products:
+  - from: /products/
     to: null
-    title: "Schedule"
-    calendly: true  # Custom flag
-  
-  - from: /agendar/
-    to: "/#contact?tab=calendly"
-    title: "Agendar"
-    lang: es
+    title: "Products"
+    fallback: "/soluciones"
+    targets:
+      es: "/soluciones"
+      en: "/en/solutions"
+      pt: "/pt/solucoes"
+    labels:
+      es: "Soluciones (ES)"
+      en: "Solutions (EN)"
+      pt: "Soluções (PT)"
 ```
 
-Then update `_plugins/redirect_generator.rb` to process the new group.
-
-### Custom Redirect Logic
-
-Modify the `generate_html` method in the plugin to add custom behavior:
+Then update `_plugins/redirect_generator.rb` to process the new group (one-time setup):
 
 ```ruby
-def generate_html(config)
-  if config['calendly']
-    # Custom logic for Calendly redirects
-    # Open calendly tab after redirect
+# Process products redirects
+if redirects['products']
+  redirects['products'].each do |redirect_config|
+    path = redirect_config['from'].gsub(/^\//, '').gsub(/\/$/, '')
+    site.pages << RedirectPage.new(site, site.source, path, redirect_config)
   end
-  # ...
 end
 ```
+
+**No changes needed to `generate_html` method** - it automatically handles any redirect with `targets` and `labels`!
+
+### Benefits of Data-Driven Approach
+
+1. **Easy Updates**: Change URLs by editing YAML only
+2. **No Code Changes**: Ruby plugin handles all redirect types generically
+3. **Consistent Behavior**: All redirects work the same way
+4. **Easy Testing**: All data visible in one file
 
 ## Migration Notes
 
