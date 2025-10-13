@@ -449,10 +449,117 @@ document.addEventListener('DOMContentLoaded', function() {
         blogCarousel.addEventListener('mouseenter', stopAutoRotate);
         blogCarousel.addEventListener('mouseleave', startAutoRotate);
 
+        // Touch/Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        blogCarousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        blogCarousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const horizontalDistance = Math.abs(touchEndX - touchStartX);
+            const verticalDistance = Math.abs(touchEndY - touchStartY);
+            
+            // Only trigger if horizontal swipe is more significant than vertical
+            if (horizontalDistance > verticalDistance && horizontalDistance > swipeThreshold) {
+                if (touchEndX < touchStartX) {
+                    // Swipe left - next card
+                    nextCard();
+                    stopAutoRotate();
+                    startAutoRotate();
+                }
+                if (touchEndX > touchStartX) {
+                    // Swipe right - previous card
+                    prevCard();
+                    stopAutoRotate();
+                    startAutoRotate();
+                }
+            }
+        }
+
         // Initialize first card as active
         if (cards.length > 0) {
             showCard(0);
             startAutoRotate();
         }
+    }
+
+    // Credits Modal
+    const creditsLink = document.getElementById('credits-link');
+    const creditsModal = document.getElementById('credits-modal');
+    const closeCredits = document.getElementById('close-credits');
+    const creditsOverlay = document.querySelector('.credits-modal-overlay');
+
+    if (creditsLink && creditsModal) {
+        // Open modal
+        creditsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            creditsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        });
+
+        // Close modal - X button
+        if (closeCredits) {
+            closeCredits.addEventListener('click', function() {
+                creditsModal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scroll
+            });
+        }
+
+        // Close modal - Click overlay
+        if (creditsOverlay) {
+            creditsOverlay.addEventListener('click', function() {
+                creditsModal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scroll
+            });
+        }
+
+        // Close modal - ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && creditsModal.style.display === 'flex') {
+                creditsModal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scroll
+            }
+        });
+    }
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    if (backToTopButton) {
+        // Show/hide button based on scroll position
+        function toggleBackToTop() {
+            const scrollThreshold = 300; // Show after scrolling 300px (reduced for better UX)
+            if (window.pageYOffset > scrollThreshold) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }
+
+        // Check on scroll
+        window.addEventListener('scroll', toggleBackToTop, { passive: true });
+
+        // Check on page load
+        toggleBackToTop();
+
+        // Smooth scroll to top when clicked
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 });
