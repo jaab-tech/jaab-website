@@ -361,4 +361,98 @@ document.addEventListener('DOMContentLoaded', function() {
             phoneInput.value = countrySelect.value + ' ';
         }
     }
+
+    // Blog preview carousel functionality
+    const blogCarousel = document.querySelector('.blog-preview-carousel');
+    if (blogCarousel) {
+        const cards = blogCarousel.querySelectorAll('.blog-preview-card');
+        const prevBtn = document.querySelector('.blog-preview-prev');
+        const nextBtn = document.querySelector('.blog-preview-next');
+        const dots = document.querySelectorAll('.blog-preview-dot');
+        let currentIndex = 0;
+        let autoRotateInterval = null;
+
+        // Show card at specific index
+        function showCard(index) {
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            currentIndex = index;
+        }
+
+        // Next card
+        function nextCard() {
+            const nextIndex = (currentIndex + 1) % cards.length;
+            showCard(nextIndex);
+        }
+
+        // Previous card
+        function prevCard() {
+            const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+            showCard(prevIndex);
+        }
+
+        // Start auto-rotation
+        function startAutoRotate() {
+            if (cards.length > 1) {
+                autoRotateInterval = setInterval(nextCard, 5000); // Rotate every 5 seconds
+            }
+        }
+
+        // Stop auto-rotation
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+        }
+
+        // Event listeners
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevCard();
+                stopAutoRotate();
+                startAutoRotate(); // Restart auto-rotation after manual interaction
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextCard();
+                stopAutoRotate();
+                startAutoRotate();
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showCard(index);
+                stopAutoRotate();
+                startAutoRotate();
+            });
+        });
+
+        // Pause auto-rotation on hover
+        blogCarousel.addEventListener('mouseenter', stopAutoRotate);
+        blogCarousel.addEventListener('mouseleave', startAutoRotate);
+
+        // Initialize first card as active
+        if (cards.length > 0) {
+            showCard(0);
+            startAutoRotate();
+        }
+    }
 });
