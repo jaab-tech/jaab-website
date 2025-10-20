@@ -563,3 +563,98 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Mark external links with a class so CSS can add an external-link icon.
+// Robust version: handles dynamic content via MutationObserver and logs when
+// window.JAAB_DEBUG === true.
+(function markExternalLinksRobust() {
+    if (typeof document === 'undefined') return;
+
+    const DEBUG = Boolean(window.JAAB_DEBUG);
+
+    function log() {
+        if (DEBUG && console && console.debug) console.debug.apply(console, arguments);
+    }
+
+    function isExternalAnchor(a) {
+        try {
+            if (!a || !a.getAttribute) return false;
+            let href = a.getAttribute('href');
+            if (!href) return false;
+            href = href.trim();
+            // Skip empty, hash-only, and protocol-less anchors used as JS hooks
+            if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href === 'javascript:void(0)') return false;
+            if (a.hasAttribute('data-no-external')) return false;
+
+            // Normalize and build absolute URL relative to the document
+            const url = new URL(href, window.location.origin);
+            return url.origin !== window.location.origin;
+        } catch (e) {
+            // If URL parsing fails, consider non-external to avoid false positives
+            log('isExternalAnchor parse error for', a, e && e.message);
+            return false;
+        }
+    }
+
+    function processAnchor(a) {
+        if (!a || !a.getAttribute) return;
+        try {
+            if (isExternalAnchor(a)) {
+                if (!a.classList.contains('external-link')) {
+                    a.classList.add('external-link');
+                    log('Marked external link:', a.href);
+                }
+
+                // If the author explicitly set a target, respect it
+                if (!a.hasAttribute('target') && !a.hasAttribute('data-preserve-target')) {
+                    a.setAttribute('target', '_blank');
+                }
+
+                // Ensure safe rel attributes
+                const rel = a.getAttribute('rel') || '';
+                const tokens = new Set(rel.split(/\s+/).filter(Boolean));
+                tokens.add('noopener');
+                tokens.add('noreferrer');
+                a.setAttribute('rel', Array.from(tokens).join(' '));
+            }
+        } catch (e) {
+            log('processAnchor error', e && e.message);
+        }
+    }
+
+    function scanAllAnchors() {
+        const anchors = document.querySelectorAll('a[href]');
+        anchors.forEach(processAnchor);
+    }
+
+    // Run once on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scanAllAnchors);
+    } else {
+        // run async to allow any inline scripts to finish
+        setTimeout(scanAllAnchors, 0);
+    }
+
+    // Observe DOM mutations and process newly added anchors (covers dynamic content)
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(m => {
+            if (!m.addedNodes) return;
+            m.addedNodes.forEach(node => {
+                if (node.nodeType !== 1) return; // element
+                if (node.tagName && node.tagName.toLowerCase() === 'a') {
+                    processAnchor(node);
+                } else {
+                    // Process anchors inside the added subtree
+                    const nested = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+                    nested.forEach(processAnchor);
+                }
+            });
+        });
+    });
+
+    try {
+        observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+    } catch (e) {
+        log('MutationObserver failed to observe:', e && e.message);
+    }
+})();

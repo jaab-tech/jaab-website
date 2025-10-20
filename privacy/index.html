@@ -51,6 +51,27 @@
     <script>
       window.pageMappings = {"home":{"es":"/","en":"/en/","pt":"/pt/"},"solutions":{"ebs":{"es":"/soluciones/modernizacion/","en":"/en/solutions/modernization/","pt":"/pt/solucoes/modernizacao/"}}};
     </script>
+    <!-- Inline CSS to mark absolute external links (computed server-side) -->
+    <style>
+      
+      a[href^="http"]:not([href*="jaab.tech"])::after {
+        content: '';
+        display: inline-block;
+        width: 0.9em;
+        height: 0.9em;
+        margin-left: 0.4em;
+        vertical-align: -0.12em;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>');
+        background-repeat: no-repeat;
+        background-size: contain;
+        opacity: 0.85;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+      }
+      a[href^="http"]:not([href*="jaab.tech"]):hover::after {
+        opacity: 1;
+        transform: translateX(2px);
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation -->
@@ -107,7 +128,7 @@
     <article class="legal-content">
       <h1 id="política-de-privacidad">Política de Privacidad</h1>
 
-<p><em>Última actualización: 17 de October de 2025</em></p>
+<p><em>Última actualización: 20 de October de 2025</em></p>
 
 <h2 id="1-información-que-recopilamos">1. Información que Recopilamos</h2>
 
