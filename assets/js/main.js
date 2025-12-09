@@ -2,7 +2,7 @@
 function toggleService(serviceId) {
     const serviceContent = document.getElementById(serviceId);
     const serviceCard = serviceContent.closest('.service-card');
-    
+
     // Toggle show class
     serviceContent.classList.toggle('show');
     serviceCard.classList.toggle('active');
@@ -13,27 +13,23 @@ window.toggleService = toggleService;
 
 // Toggle technology category sections
 function toggleTechCategory(categoryId) {
-    console.log('toggleTechCategory called with ID:', categoryId);
     const categoryContent = document.getElementById(categoryId);
-    
+
     if (!categoryContent) {
         console.error('Could not find element with ID:', categoryId);
         return;
     }
-    
+
     const categoryCard = categoryContent.closest('.tech-category');
-    
+
     if (!categoryCard) {
         console.error('Could not find parent .tech-category for:', categoryId);
         return;
     }
-    
+
     // Toggle show class
     categoryContent.classList.toggle('show');
     categoryCard.classList.toggle('active');
-    
-    console.log('Toggled - Content has .show:', categoryContent.classList.contains('show'), 
-                'Card has .active:', categoryCard.classList.contains('active'));
 }
 
 // Make toggleTechCategory globally accessible
@@ -43,12 +39,12 @@ window.toggleTechCategory = toggleTechCategory;
 function toggleCalendly() {
     const modal = document.getElementById('calendly-modal');
     const btn = document.getElementById('schedule-btn');
-    
+
     if (!modal) {
         console.error('Calendly modal not found!');
         return;
     }
-    
+
     if (modal.style.display === 'none' || modal.style.display === '') {
         // Show modal
         modal.style.display = 'flex';
@@ -67,9 +63,9 @@ function toggleCalendly() {
 function closeCalendly() {
     const modal = document.getElementById('calendly-modal');
     const btn = document.getElementById('schedule-btn');
-    
+
     if (!modal) return;
-    
+
     modal.classList.remove('show');
     if (btn) btn.classList.remove('active');
     // Restore body scroll
@@ -85,11 +81,11 @@ window.toggleCalendly = toggleCalendly;
 window.closeCalendly = closeCalendly;
 
 // Mobile menu toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Attach Calendly toggle button event listener
     const scheduleBtn = document.getElementById('schedule-btn');
     if (scheduleBtn) {
-        scheduleBtn.addEventListener('click', function(e) {
+        scheduleBtn.addEventListener('click', function (e) {
             e.preventDefault();
             toggleCalendly();
         });
@@ -98,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Attach close button event listener
     const closeBtn = document.getElementById('close-calendly');
     if (closeBtn) {
-        closeBtn.addEventListener('click', function(e) {
+        closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
             closeCalendly();
         });
@@ -107,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close modal when clicking outside (on overlay)
     const calendlyModal = document.getElementById('calendly-modal');
     if (calendlyModal) {
-        calendlyModal.addEventListener('click', function(e) {
+        calendlyModal.addEventListener('click', function (e) {
             // Only close if clicking directly on the modal (overlay), not on content
             if (e.target === calendlyModal || e.target.classList.contains('calendly-modal-overlay')) {
                 closeCalendly();
@@ -116,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             const modal = document.getElementById('calendly-modal');
             if (modal && modal.style.display === 'flex') {
@@ -129,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('meet') === 'true') {
         // Wait a moment for the page to render, then open modal
-        setTimeout(function() {
+        setTimeout(function () {
             toggleCalendly();
         }, 300);
     }
@@ -142,20 +138,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Context-aware language switching
     const langSwitchLinks = document.querySelectorAll('.lang-switch-link');
     langSwitchLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetLang = this.getAttribute('data-lang');
             const currentHash = window.location.hash;
             const currentPath = window.location.pathname;
             let targetUrl = this.getAttribute('href');
-            
+
             // Store user's language preference for auto-translation
             localStorage.setItem('jaab_preferred_lang', targetLang);
-            
+
             // Build reverse lookup map from YAML configuration
             const pageMappings = window.pageMappings || {};
             const pathToPageMap = {};
-            
+
             // Map all solution pages from YAML
             if (pageMappings.solutions) {
                 Object.keys(pageMappings.solutions).forEach(solutionKey => {
@@ -168,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 });
             }
-            
+
             // Check if we're on a mapped page (solution page, etc.)
             if (pathToPageMap[currentPath]) {
                 targetUrl = pathToPageMap[currentPath][targetLang];
@@ -176,30 +172,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 // We're on home page, preserve the hash/anchor
                 targetUrl = targetUrl + currentHash;
             }
-            
+
             window.location.href = targetUrl;
         });
     });
 
     if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            console.log('Mobile menu toggle clicked');
+        mobileMenuToggle.addEventListener('click', function () {
             // Toggle mobile menu visibility
             navbar.classList.toggle('mobile-menu-open');
 
             // Animate hamburger icon
             this.classList.toggle('active');
-            
-            console.log('Navbar classes:', navbar.className);
         });
-    } else {
-        console.log('Mobile menu toggle not found!');
     }
 
     // Close mobile menu when clicking on links
     const mobileNavLinks = document.querySelectorAll('.nav-links a, .language-switcher a');
     mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             navbar.classList.remove('mobile-menu-open');
             if (mobileMenuToggle) {
                 mobileMenuToggle.classList.remove('active');
@@ -210,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
@@ -224,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add scroll effect to navbar
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 100) {
             navbar.classList.add('scrolled');
         } else {
@@ -238,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
@@ -247,253 +238,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe sections for animation
-    const sections = document.querySelectorAll('.about, .contact');
+    const sections = document.querySelectorAll('.identity-hero, .services-section, .solutions-section, .insights-section, .about-section, .contact-section');
     sections.forEach(section => {
         observer.observe(section);
     });
 
-    // Handle contact form submission with bot protection
-    const contactForm = document.getElementById('contact-form');
-    const successMessage = document.getElementById('success-message');
-    let formLoadTime = Date.now(); // Track when form was loaded
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            console.log('Form submitted');
-            
-            // HONEYPOT CHECK: If honeypot field is filled, it's a bot
-            const honeypotField = document.getElementById('website');
-            if (honeypotField && honeypotField.value !== '') {
-                console.log('Bot detected via honeypot');
-                e.preventDefault();
-                return false;
-            }
-            
-            // TIME-BASED CHECK: If form submitted too quickly (< 3 seconds), it's likely a bot
-            const timeSinceLoad = (Date.now() - formLoadTime) / 1000; // in seconds
-            if (timeSinceLoad < 3) {
-                console.log('Bot detected: form submitted too quickly (' + timeSinceLoad + ' seconds)');
-                e.preventDefault();
-                alert('Please take your time to fill out the form.');
-                return false;
-            }
-            
-            // Combine country code and phone number before submission
-            const countryCodeField = document.getElementById('country-code');
-            const phoneField = document.getElementById('phone');
-            
-            if (countryCodeField && phoneField && phoneField.value) {
-                // Ensure phone field includes country code
-                const phoneValue = phoneField.value.trim();
-                const countryCode = countryCodeField.value;
-                
-                // If phone doesn't start with country code, add it
-                if (!phoneValue.startsWith(countryCode)) {
-                    phoneField.value = countryCode + ' ' + phoneValue.replace(/^\+\d{1,4}\s*/, '');
-                }
-            }
-            
-            // Show success message after a short delay
-            setTimeout(function() {
-                successMessage.style.display = 'block';
-                contactForm.reset();
-                
-                // Reset phone field with default country code
-                if (countryCodeField && phoneField) {
-                    phoneField.value = countryCodeField.value + ' ';
-                }
-                
-                // Reset form load time for next submission
-                formLoadTime = Date.now();
-                
-                // Hide success message after 5 seconds
-                setTimeout(function() {
-                    successMessage.style.display = 'none';
-                }, 5000);
-            }, 500);
+    // Contact form modal (Google Form)
+    const contactModal = document.getElementById('contact-form-modal');
+    const openContactBtn = document.getElementById('open-contact-modal');
+    const closeContactBtn = document.getElementById('close-contact-modal');
+    const contactOverlay = contactModal ? contactModal.querySelector('.contact-modal-overlay') : null;
+
+    function openContactModal() {
+        if (!contactModal) return;
+        contactModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => contactModal.classList.add('show'), 10);
+    }
+
+    function closeContactModal() {
+        if (!contactModal) return;
+        contactModal.classList.remove('show');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            contactModal.style.display = 'none';
+        }, 250);
+    }
+
+    if (openContactBtn && contactModal) {
+        openContactBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openContactModal();
         });
     }
 
-    // Phone country code synchronization
-    const countrySelect = document.getElementById('country-code');
-    const phoneInput = document.getElementById('phone');
-    
-    if (countrySelect && phoneInput) {
-        // Create a map of country codes
-        const countryCodes = {};
-        Array.from(countrySelect.options).forEach(option => {
-            if (option.value) {
-                countryCodes[option.value] = option;
-            }
+    if (closeContactBtn) {
+        closeContactBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            closeContactModal();
         });
-
-        // When country is selected, update phone input prefix
-        countrySelect.addEventListener('change', function() {
-            const selectedCode = this.value;
-            const currentPhone = phoneInput.value.trim();
-            
-            // Remove any existing country code from phone number
-            let phoneNumber = currentPhone.replace(/^\+\d{1,4}\s*/, '');
-            
-            // Add new country code
-            phoneInput.value = selectedCode + ' ' + phoneNumber;
-            phoneInput.focus();
-        });
-
-        // When user types in phone, detect and update country selector
-        phoneInput.addEventListener('input', function() {
-            const value = this.value.trim();
-            
-            // Try to match country code at the start
-            const match = value.match(/^\+(\d{1,4})/);
-            if (match) {
-                const detectedCode = '+' + match[1];
-                
-                // Check if we have this country code
-                if (countryCodes[detectedCode]) {
-                    countrySelect.value = detectedCode;
-                }
-            }
-        });
-
-        // Initialize with default country code
-        if (phoneInput.value.trim() === '') {
-            phoneInput.value = countrySelect.value + ' ';
-        }
     }
 
-    // Blog preview carousel functionality
-    const blogCarousel = document.querySelector('.blog-preview-carousel');
-    if (blogCarousel) {
-        const cards = blogCarousel.querySelectorAll('.blog-preview-card');
-        const prevBtn = document.querySelector('.blog-preview-prev');
-        const nextBtn = document.querySelector('.blog-preview-next');
-        const dots = document.querySelectorAll('.blog-preview-dot');
-        let currentIndex = 0;
-        let autoRotateInterval = null;
-
-        // Show card at specific index
-        function showCard(index) {
-            cards.forEach((card, i) => {
-                if (i === index) {
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
-                }
-            });
-
-            dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-
-            currentIndex = index;
-        }
-
-        // Next card
-        function nextCard() {
-            const nextIndex = (currentIndex + 1) % cards.length;
-            showCard(nextIndex);
-        }
-
-        // Previous card
-        function prevCard() {
-            const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
-            showCard(prevIndex);
-        }
-
-        // Start auto-rotation
-        function startAutoRotate() {
-            if (cards.length > 1) {
-                autoRotateInterval = setInterval(nextCard, 5000); // Rotate every 5 seconds
-            }
-        }
-
-        // Stop auto-rotation
-        function stopAutoRotate() {
-            if (autoRotateInterval) {
-                clearInterval(autoRotateInterval);
-                autoRotateInterval = null;
-            }
-        }
-
-        // Event listeners
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                prevCard();
-                stopAutoRotate();
-                startAutoRotate(); // Restart auto-rotation after manual interaction
-            });
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                nextCard();
-                stopAutoRotate();
-                startAutoRotate();
-            });
-        }
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showCard(index);
-                stopAutoRotate();
-                startAutoRotate();
-            });
-        });
-
-        // Pause auto-rotation on hover
-        blogCarousel.addEventListener('mouseenter', stopAutoRotate);
-        blogCarousel.addEventListener('mouseleave', startAutoRotate);
-
-        // Touch/Swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        blogCarousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-
-        blogCarousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const horizontalDistance = Math.abs(touchEndX - touchStartX);
-            const verticalDistance = Math.abs(touchEndY - touchStartY);
-            
-            // Only trigger if horizontal swipe is more significant than vertical
-            if (horizontalDistance > verticalDistance && horizontalDistance > swipeThreshold) {
-                if (touchEndX < touchStartX) {
-                    // Swipe left - next card
-                    nextCard();
-                    stopAutoRotate();
-                    startAutoRotate();
-                }
-                if (touchEndX > touchStartX) {
-                    // Swipe right - previous card
-                    prevCard();
-                    stopAutoRotate();
-                    startAutoRotate();
-                }
-            }
-        }
-
-        // Initialize first card as active
-        if (cards.length > 0) {
-            showCard(0);
-            startAutoRotate();
-        }
+    if (contactOverlay) {
+        contactOverlay.addEventListener('click', closeContactModal);
     }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            const modalVisible = contactModal && contactModal.style.display === 'flex';
+            if (modalVisible) {
+                closeContactModal();
+            }
+        }
+    });
+
 
     // Credits Modal
     const creditsLink = document.getElementById('credits-link');
@@ -503,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (creditsLink && creditsModal) {
         // Open modal
-        creditsLink.addEventListener('click', function(e) {
+        creditsLink.addEventListener('click', function (e) {
             e.preventDefault();
             creditsModal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent scroll
@@ -511,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close modal - X button
         if (closeCredits) {
-            closeCredits.addEventListener('click', function() {
+            closeCredits.addEventListener('click', function () {
                 creditsModal.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scroll
             });
@@ -519,14 +317,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close modal - Click overlay
         if (creditsOverlay) {
-            creditsOverlay.addEventListener('click', function() {
+            creditsOverlay.addEventListener('click', function () {
                 creditsModal.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scroll
             });
         }
 
         // Close modal - ESC key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && creditsModal.style.display === 'flex') {
                 creditsModal.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scroll
@@ -536,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Back to Top Button
     const backToTopButton = document.getElementById('back-to-top');
-    
+
     if (backToTopButton) {
         // Show/hide button based on scroll position
         function toggleBackToTop() {
@@ -555,11 +353,85 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleBackToTop();
 
         // Smooth scroll to top when clicked
-        backToTopButton.addEventListener('click', function() {
+        backToTopButton.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+    }
+
+    // Continuous Blog Carousel
+    const track = document.querySelector('.insights-track');
+    const prevBtn = document.querySelector('.prev-control');
+    const nextBtn = document.querySelector('.next-control');
+
+    if (track && prevBtn && nextBtn) {
+        let currentOffset = 0;
+        let speed = 0.5; // Base scroll speed
+        const cardWidth = 400; // Updated to match CSS
+        const gap = 32; // 2rem
+        const cardFullWidth = cardWidth + gap;
+        const totalCards = track.children.length;
+        const halfCards = totalCards / 2;
+        const singleLoopWidth = halfCards * cardFullWidth;
+
+        let isHovered = false;
+        let overrideSpeed = 0; // Set by hover on arrows
+
+        // Animation Loop
+        function animate() {
+            let effectiveSpeed = isHovered ? 0 : speed;
+
+            // If arrow is hovered, it overrides the 'pause' and forces direction
+            if (overrideSpeed !== 0) {
+                effectiveSpeed = overrideSpeed;
+            }
+
+            currentOffset -= effectiveSpeed;
+
+            // Infinite Loop Logic
+            // If moved too far left (offset negative)
+            if (currentOffset <= -singleLoopWidth) {
+                currentOffset += singleLoopWidth;
+            }
+            // If moved too far right (offset positive)
+            else if (currentOffset > 0) {
+                currentOffset -= singleLoopWidth;
+            }
+
+            track.style.transform = `translateX(${currentOffset}px)`;
+            requestAnimationFrame(animate);
+        }
+
+        // Start animation
+        requestAnimationFrame(animate);
+
+        // Hover Logic (Track)
+        track.addEventListener('mouseenter', () => isHovered = true);
+        track.addEventListener('mouseleave', () => isHovered = false);
+
+        // Hover Logic (Arrows) - Force Direction
+        prevBtn.addEventListener('mouseenter', () => overrideSpeed = -2); // Move Right (negative offset decrease = increase)
+        prevBtn.addEventListener('mouseleave', () => overrideSpeed = 0);
+
+        nextBtn.addEventListener('mouseenter', () => overrideSpeed = 2); // Move Left (increase offset decrease)
+        nextBtn.addEventListener('mouseleave', () => overrideSpeed = 0);
+
+        // Click Logic (Jump)
+        prevBtn.addEventListener('click', () => {
+            currentOffset += cardFullWidth;
+            // Immediate bounds check to keep it smooth
+            if (currentOffset > 0) {
+                currentOffset -= singleLoopWidth;
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentOffset -= cardFullWidth;
+            if (currentOffset <= -singleLoopWidth) {
+                currentOffset += singleLoopWidth;
+            }
         });
     }
 });
