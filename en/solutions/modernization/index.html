@@ -167,7 +167,8 @@
       <div class="ebs-header-info">
         <h2 class="section-title">About EBS</h2>
         <p class="ebs-location">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
@@ -175,7 +176,8 @@
         </p>
         <a href="https://europebs.com" target="_blank" rel="noopener" class="ebs-website-link">
           https://europebs.com
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
             <polyline points="15 3 21 3 21 9"></polyline>
             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -206,7 +208,8 @@
       
       <div class="solution-item-card">
         <div class="solution-item-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="16 18 22 12 16 6"></polyline>
             <polyline points="8 6 2 12 8 18"></polyline>
           </svg>
@@ -217,7 +220,8 @@
       
       <div class="solution-item-card">
         <div class="solution-item-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="16 18 22 12 16 6"></polyline>
             <polyline points="8 6 2 12 8 18"></polyline>
           </svg>
@@ -228,7 +232,8 @@
       
       <div class="solution-item-card">
         <div class="solution-item-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="16 18 22 12 16 6"></polyline>
             <polyline points="8 6 2 12 8 18"></polyline>
           </svg>
@@ -271,124 +276,188 @@
   </div>
 </section>
 
-<!-- Technology Stack -->
-<section class="technology-section">
+<!-- Technology Stack Table -->
+<section id="stack" class="technology-section">
   <div class="container">
-    <h2 class="section-title">Technology Stack</h2>
-    <p class="section-lead">EBS masters both historical technologies and cutting-edge open source and commercial solutions.</p>
-    <div class="technology-grid">
-      
-      <div class="tech-category">
-        <div class="tech-category-header" onclick="toggleTechCategory('tech-cat-1')">
-          <h3>Legacy Platforms</h3>
-          <svg class="tech-category-toggle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <details class="tech-table-details" open>
+      <summary class="tech-table-summary">
+        <div class="tech-summary-content">
+          <h2 class="section-title">Technology Stack</h2>
+          <p class="section-lead">EBS masters both historical technologies and cutting-edge open source and commercial solutions. The following table is a summary of the most relevant stack, but does not represent the entirety of our capabilities.</p>
+        </div>
+        <div class="tech-summary-icon">
+          <svg class="tech-table-toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
-        <div class="tech-category-content" id="tech-cat-1">
-          <ul>
+      </summary>
+
+      <div class="tech-table-wrapper">
+        <table class="tech-expertise-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Legacy Environment / Origin</th>
+              <th>Modern Environment / Destination</th>
+            </tr>
+          </thead>
+          <tbody>
             
-            <li>IBM - Z/OS MVS</li>
+            <tr>
+              <td class="tech-category-name" data-label="Category">
+                Operating Systems & Platforms
+              </td>
+              <td data-label="Legacy Environment / Origin">
+                <ul>
+                  
+                  <li>IBM (OS/390, MVS, VSE)</li>
+                  
+                  <li>BULL (GCOS7, GCOS8)</li>
+                  
+                  <li>Unix (AIX, Solaris)</li>
+                  
+                  <li>Unisys MCP</li>
+                  
+                  <li>HP / OpenVMS</li>
+                  
+                </ul>
+              </td>
+              <td data-label="Modern Environment / Destination">
+                <ul>
+                  
+                  <li>Linux</li>
+                  
+                  <li>Cloud Environments</li>
+                  
+                  <li>Virtualized Environments</li>
+                  
+                </ul>
+              </td>
+            </tr>
             
-            <li>IBM Z/OS VSE</li>
+            <tr>
+              <td class="tech-category-name" data-label="Category">
+                Programming Languages
+              </td>
+              <td data-label="Legacy Environment / Origin">
+                <ul>
+                  
+                  <li>COBOL</li>
+                  
+                  <li>NATURAL</li>
+                  
+                  <li>PL/1</li>
+                  
+                  <li>Assembler (ASM)</li>
+                  
+                  <li>LINC</li>
+                  
+                  <li>Visual Basic</li>
+                  
+                </ul>
+              </td>
+              <td data-label="Modern Environment / Destination">
+                <ul>
+                  
+                  <li>Java</li>
+                  
+                  <li>Python</li>
+                  
+                  <li>C/C++</li>
+                  
+                  <li>Modernized COBOL</li>
+                  
+                </ul>
+              </td>
+            </tr>
             
-            <li>IBM - OS/400</li>
+            <tr>
+              <td class="tech-category-name" data-label="Category">
+                Databases & File Systems
+              </td>
+              <td data-label="Legacy Environment / Origin">
+                <ul>
+                  
+                  <li>IBM: VSAM, ADABAS, IMS/DB, DB2</li>
+                  
+                  <li>BULL: IDS2, UFAS</li>
+                  
+                  <li>Unisys: ISAM, DMSII</li>
+                  
+                  <li>HP/VMS: RDB</li>
+                  
+                </ul>
+              </td>
+              <td data-label="Modern Environment / Destination">
+                <ul>
+                  
+                  <li>Relational Databases (RDBMS)</li>
+                  
+                  <li>Oracle</li>
+                  
+                  <li>PostgreSQL</li>
+                  
+                </ul>
+              </td>
+            </tr>
             
-            <li>BULL GCOS7</li>
+            <tr>
+              <td class="tech-category-name" data-label="Category">
+                Transactional Monitors & Middleware
+              </td>
+              <td data-label="Legacy Environment / Origin">
+                <ul>
+                  
+                  <li>CICS, IMS</li>
+                  
+                  <li>TDS, TP8</li>
+                  
+                  <li>ACMS</li>
+                  
+                  <li>Tuxedo</li>
+                  
+                </ul>
+              </td>
+              <td data-label="Modern Environment / Destination">
+                <ul>
+                  
+                  <li>Web Services (REST API)</li>
+                  
+                </ul>
+              </td>
+            </tr>
             
-            <li>BULL GCOS8</li>
+            <tr>
+              <td class="tech-category-name" data-label="Category">
+                Job Control & Scripting
+              </td>
+              <td data-label="Legacy Environment / Origin">
+                <ul>
+                  
+                  <li>JCL (IBM, BULL)</li>
+                  
+                  <li>DCL (VMS)</li>
+                  
+                  <li>WFL (Unisys)</li>
+                  
+                </ul>
+              </td>
+              <td data-label="Modern Environment / Destination">
+                <ul>
+                  
+                  <li>Modern Linux/Unix scripts (Python, Shell)</li>
+                  
+                  <li>Batch Orchestrators</li>
+                  
+                </ul>
+              </td>
+            </tr>
             
-            <li>Unisys</li>
-            
-            <li>Solaris</li>
-            
-            <li>Tandem</li>
-            
-            <li>Open VMS</li>
-            
-          </ul>
-        </div>
+          </tbody>
+        </table>
       </div>
-      
-      <div class="tech-category">
-        <div class="tech-category-header" onclick="toggleTechCategory('tech-cat-2')">
-          <h3>Modern Platforms</h3>
-          <svg class="tech-category-toggle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </div>
-        <div class="tech-category-content" id="tech-cat-2">
-          <ul>
-            
-            <li>Linux</li>
-            
-            <li>Windows</li>
-            
-            <li>Cloud (AWS, Azure, GCP)</li>
-            
-          </ul>
-        </div>
-      </div>
-      
-      <div class="tech-category">
-        <div class="tech-category-header" onclick="toggleTechCategory('tech-cat-3')">
-          <h3>Languages</h3>
-          <svg class="tech-category-toggle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </div>
-        <div class="tech-category-content" id="tech-cat-3">
-          <ul>
-            
-            <li>Java</li>
-            
-            <li>C</li>
-            
-            <li>Python</li>
-            
-            <li>COBOL</li>
-            
-            <li>Natural</li>
-            
-            <li>Assembler</li>
-            
-            <li>PL/SQL</li>
-            
-            <li>PL1</li>
-            
-          </ul>
-        </div>
-      </div>
-      
-      <div class="tech-category">
-        <div class="tech-category-header" onclick="toggleTechCategory('tech-cat-4')">
-          <h3>Databases</h3>
-          <svg class="tech-category-toggle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </div>
-        <div class="tech-category-content" id="tech-cat-4">
-          <ul>
-            
-            <li>IMS</li>
-            
-            <li>Datacom</li>
-            
-            <li>VSAM</li>
-            
-            <li>UFAS</li>
-            
-            <li>PostgreSQL</li>
-            
-            <li>Oracle</li>
-            
-            <li>DB2</li>
-            
-          </ul>
-        </div>
-      </div>
-      
-    </div>
+    </details>
   </div>
 </section>
 
@@ -400,7 +469,8 @@
         <h2 class="section-title">Modern COBOL</h2>
         <a href="https://cobolcloud.io" target="_blank" rel="noopener" class="cobolcloud-website-link">
           https://cobolcloud.io
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
             <polyline points="15 3 21 3 21 9"></polyline>
             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -409,12 +479,13 @@
       </div>
       <img src="/assets/images/cobolcloud.svg" alt="CobolCloud" class="cobolcloud-logo">
     </div>
-    
+
     <div class="cobolcloud-intro">
       <p>
         
         
-          <a href="https://www.businesswire.com/news/home/20230505005220/en/EBS-Integrates-with-CobolCloud-to-improve-legacy-migrations-to-Cloud" target="_blank" rel="noopener" class="external-link">EBS and CobolCloud</a> combine decades of expertise in mainframe modernization with cutting-edge open-source technology, offering clients a proven path to transform their COBOL estates while controlling costs and accelerating innovation.
+        <a href="https://www.businesswire.com/news/home/20230505005220/en/EBS-Integrates-with-CobolCloud-to-improve-legacy-migrations-to-Cloud" target="_blank" rel="noopener" class="external-link">EBS
+          and CobolCloud</a> combine decades of expertise in mainframe modernization with cutting-edge open-source technology, offering clients a proven path to transform their COBOL estates while controlling costs and accelerating innovation.
         
       </p>
     </div>
@@ -429,42 +500,48 @@
       <ul class="benefits-list">
         
         <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           Open-source COBOL compiler optimized for modern platforms
         </li>
         
         <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           Support for major COBOL dialects with no source code modification
         </li>
         
         <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           Full integration with cloud services (AWS, Azure, GCP)
         </li>
         
         <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           Cost reduction through elimination of mainframe licensing
         </li>
         
         <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           Modern development and deployment workflows
         </li>
         
         <li>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           Enterprise-grade tools for production operations
@@ -476,9 +553,11 @@
     <div class="success-story-card">
       <h3>Success Story: AFD (French Development Agency)</h3>
       <p>AFD, a public financial institution that implements the policy defined by the French government, chose CobolCloud to modernize its critical COBOL applications. This successful migration demonstrates the power of combining EBS expertise with CobolCloud technology to transform legacy systems while maintaining business continuity.</p>
-      <a href="https://www.businesswire.com/news/home/20230523005718/en/AFD-Chooses-CobolCloud-to-Modernize-Its-COBOL-Applications" target="_blank" rel="noopener" class="success-story-link">
+      <a href="https://www.businesswire.com/news/home/20230523005718/en/AFD-Chooses-CobolCloud-to-Modernize-Its-COBOL-Applications" target="_blank" rel="noopener"
+        class="success-story-link">
         Read the full case study
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
           <polyline points="15 3 21 3 21 9"></polyline>
           <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -535,7 +614,8 @@
     <div class="industries-grid">
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -543,7 +623,8 @@
       </div>
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -551,7 +632,8 @@
       </div>
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -559,7 +641,8 @@
       </div>
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -567,7 +650,8 @@
       </div>
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -575,7 +659,8 @@
       </div>
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -583,7 +668,8 @@
       </div>
       
       <div class="industry-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -604,8 +690,6 @@
     </div>
   </div>
 </section>
-
-
 
   </main>
 
