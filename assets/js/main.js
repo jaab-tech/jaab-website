@@ -530,3 +530,52 @@ document.addEventListener('DOMContentLoaded', function () {
         log('MutationObserver failed to observe:', e && e.message);
     }
 })();
+
+// Image Zoom Modal Functions
+function openImageModal(src, alt) {
+    const modal = document.getElementById('image-zoom-modal');
+    const modalImg = document.getElementById('modal-image');
+    const captionText = document.getElementById('modal-caption');
+
+    if (!modal || !modalImg) return;
+
+    modalImg.src = src;
+    modalImg.alt = alt || '';
+    if (captionText) captionText.innerText = alt || '';
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent scroll
+
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-zoom-modal');
+    if (!modal) return;
+
+    modal.classList.remove('show');
+    document.body.style.overflow = ''; // Restore scroll
+
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+// Global Escape key handler for all modals
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        if (typeof closeImageModal === 'function') closeImageModal();
+        if (typeof closeCalendly === 'function') closeCalendly();
+        // Add credits modal close if needed
+        const creditsModal = document.getElementById('credits-modal');
+        if (creditsModal && creditsModal.style.display === 'flex') {
+            const closeBtn = document.getElementById('close-credits');
+            if (closeBtn) closeBtn.click();
+        }
+    }
+});
+
+window.openImageModal = openImageModal;
+window.closeImageModal = closeImageModal;

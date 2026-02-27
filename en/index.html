@@ -358,7 +358,7 @@
           style="--bg-image: url('/assets/images/obsolescencia-tecnologica.png'); text-decoration: none; color: inherit;">
           <div class="insight-content">
             <div class="insight-meta">
-              27 Feb 2026 · 6 min
+              27 Feb 2026 · 7 min
             </div>
             <h3 class="insight-title">Obsolescencia Tecnológica: La amenaza silenciosa.</h3>
             <p class="insight-excerpt">La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las est...</p>
@@ -396,7 +396,7 @@
           style="--bg-image: url('/assets/images/obsolescencia-tecnologica.png'); text-decoration: none; color: inherit;">
           <div class="insight-content">
             <div class="insight-meta">
-              27 Feb 2026 · 6 min
+              27 Feb 2026 · 7 min
             </div>
             <h3 class="insight-title">Obsolescencia Tecnológica: La amenaza silenciosa.</h3>
             <p class="insight-excerpt">La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las est...</p>
@@ -929,6 +929,16 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
+
+  <!-- Image Zoom Modal (for Blog) -->
+  <div id="image-zoom-modal" class="image-zoom-modal">
+    <div class="image-zoom-overlay" onclick="closeImageModal()"></div>
+    <div class="image-zoom-content">
+      <button class="image-zoom-close" onclick="closeImageModal()" aria-label="Cerrar">&times;</button>
+      <img id="modal-image" src="" alt="">
+      <div id="modal-caption" class="image-zoom-caption"></div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>

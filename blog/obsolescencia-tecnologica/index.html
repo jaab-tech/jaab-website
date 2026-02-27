@@ -169,7 +169,7 @@
         <span class="post-author">Juan Andrés Antoniuk</span>
         
         <span class="post-separator">•</span>
-        <span class="post-read-time">6 min</span>
+        <span class="post-read-time">7 min</span>
       </div>
 
       <h1 class="post-title"
@@ -254,21 +254,21 @@
 <h3 id="publicación-original-aiu">Publicación Original (AIU)</h3>
 
 <div class="blog-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 2rem;">
-  <a href="/assets/images/blog/aiu-obsolescencia/page-1.jpg" target="_blank">
-    <img src="/assets/images/blog/aiu-obsolescencia/page-1.jpg" alt="AIU Página 1" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);" />
-  </a>
-  <a href="/assets/images/blog/aiu-obsolescencia/page-2.jpg" target="_blank">
-    <img src="/assets/images/blog/aiu-obsolescencia/page-2.jpg" alt="AIU Página 2" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);" />
-  </a>
-  <a href="/assets/images/blog/aiu-obsolescencia/page-3.jpg" target="_blank">
-    <img src="/assets/images/blog/aiu-obsolescencia/page-3.jpg" alt="AIU Página 3" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);" />
-  </a>
-  <a href="/assets/images/blog/aiu-obsolescencia/page-4.jpg" target="_blank">
-    <img src="/assets/images/blog/aiu-obsolescencia/page-4.jpg" alt="AIU Página 4" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);" />
-  </a>
-  <a href="/assets/images/blog/aiu-obsolescencia/page-5.jpg" target="_blank">
-    <img src="/assets/images/blog/aiu-obsolescencia/page-5.jpg" alt="AIU Página 5" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);" />
-  </a>
+  <div style="cursor: pointer;" onclick="openImageModal('/assets/images/blog/aiu-obsolescencia/page-1.jpg', 'AIU Página 1')">
+    <img src="/assets/images/blog/aiu-obsolescencia/page-1.jpg" alt="AIU Página 1" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); width: 100%;" />
+  </div>
+  <div style="cursor: pointer;" onclick="openImageModal('/assets/images/blog/aiu-obsolescencia/page-2.jpg', 'AIU Página 2')">
+    <img src="/assets/images/blog/aiu-obsolescencia/page-2.jpg" alt="AIU Página 2" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); width: 100%;" />
+  </div>
+  <div style="cursor: pointer;" onclick="openImageModal('/assets/images/blog/aiu-obsolescencia/page-3.jpg', 'AIU Página 3')">
+    <img src="/assets/images/blog/aiu-obsolescencia/page-3.jpg" alt="AIU Página 3" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); width: 100%;" />
+  </div>
+  <div style="cursor: pointer;" onclick="openImageModal('/assets/images/blog/aiu-obsolescencia/page-4.jpg', 'AIU Página 4')">
+    <img src="/assets/images/blog/aiu-obsolescencia/page-4.jpg" alt="AIU Página 4" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); width: 100%;" />
+  </div>
+  <div style="cursor: pointer;" onclick="openImageModal('/assets/images/blog/aiu-obsolescencia/page-5.jpg', 'AIU Página 5')">
+    <img src="/assets/images/blog/aiu-obsolescencia/page-5.jpg" alt="AIU Página 5" style="border: 1px solid #eee; border-radius: 4px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); width: 100%;" />
+  </div>
 </div>
 
 <hr />
@@ -569,6 +569,16 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
+
+  <!-- Image Zoom Modal (for Blog) -->
+  <div id="image-zoom-modal" class="image-zoom-modal">
+    <div class="image-zoom-overlay" onclick="closeImageModal()"></div>
+    <div class="image-zoom-content">
+      <button class="image-zoom-close" onclick="closeImageModal()" aria-label="Cerrar">&times;</button>
+      <img id="modal-image" src="" alt="">
+      <div id="modal-caption" class="image-zoom-caption"></div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>

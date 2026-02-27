@@ -259,7 +259,7 @@
             </time>
             <span class="blog-card-separator">•</span>
             <span class="blog-card-read-time">
-              6 min
+              7 min
             </span>
           </div>
 
@@ -801,6 +801,16 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
+
+  <!-- Image Zoom Modal (for Blog) -->
+  <div id="image-zoom-modal" class="image-zoom-modal">
+    <div class="image-zoom-overlay" onclick="closeImageModal()"></div>
+    <div class="image-zoom-content">
+      <button class="image-zoom-close" onclick="closeImageModal()" aria-label="Cerrar">&times;</button>
+      <img id="modal-image" src="" alt="">
+      <div id="modal-caption" class="image-zoom-caption"></div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
