@@ -434,6 +434,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Global Blog Image Zoom - Automatically attach to all images in .post-content
+    const postContent = document.querySelector('.post-content');
+    if (postContent) {
+        const images = postContent.querySelectorAll('img');
+        images.forEach(img => {
+            // Add zoom cursor
+            img.style.cursor = 'zoom-in';
+
+            // Add click listener
+            img.addEventListener('click', function () {
+                openImageModal(img.src, img.alt);
+            });
+        });
+    }
 });
 
 // Mark external links with a class so CSS can add an external-link icon.
