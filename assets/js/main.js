@@ -332,36 +332,145 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Back to Top Button
-    const backToTopButton = document.getElementById('back-to-top');
+    // Slide Navigator (Universal Controller) is now handled in the layout template script block.
 
-    if (backToTopButton) {
-        // Show/hide button based on scroll position
-        function toggleBackToTop() {
-            const scrollThreshold = 300; // Show after scrolling 300px (reduced for better UX)
-            if (window.pageYOffset > scrollThreshold) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
+    // --- Search Functionality ---
+    const searchModal = document.getElementById('search-modal');
+    const searchOpenBtn = document.getElementById('search-open');
+    const searchCloseBtn = document.getElementById('search-close');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const resultsCount = document.getElementById('results-count');
+    let searchIndex = null;
+
+    if (searchModal && searchOpenBtn) {
+        // Fetch Search Index
+        async function fetchSearchIndex() {
+            if (searchIndex) return;
+            try {
+                const response = await fetch('/search.json');
+                searchIndex = await response.json();
+            } catch (err) {
+                console.error('Failed to load search index:', err);
             }
         }
 
-        // Check on scroll
-        window.addEventListener('scroll', toggleBackToTop, { passive: true });
-
-        // Check on page load
-        toggleBackToTop();
-
-        // Smooth scroll to top when clicked
-        backToTopButton.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        // Open Search
+        searchOpenBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            searchModal.style.display = 'flex';
+            setTimeout(() => {
+                searchModal.classList.add('is-visible');
+                searchInput.focus();
+                fetchSearchIndex();
+            }, 10);
+            document.body.style.overflow = 'hidden';
         });
+
+        // Close Search
+        function closeSearch() {
+            searchModal.classList.remove('is-visible');
+            setTimeout(() => {
+                searchModal.style.display = 'none';
+            }, 400);
+            document.body.style.overflow = '';
+            searchInput.value = '';
+            searchResults.innerHTML = '';
+            resultsCount.textContent = '';
+        }
+
+        searchCloseBtn.addEventListener('click', closeSearch);
+        document.querySelector('.search-modal-backdrop').addEventListener('click', closeSearch);
+
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchModal.classList.contains('is-visible')) {
+                closeSearch();
+            }
+        });
+
+        // Perform Search
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (!searchIndex) return;
+
+            if (query.length < 2) {
+                searchResults.innerHTML = '';
+                resultsCount.textContent = '';
+                return;
+            }
+
+            const pageLang = document.documentElement.lang || 'es';
+            
+            const results = searchIndex
+                .filter(item => item.lang === pageLang)
+                .map(item => {
+                    let score = 0;
+                    const title = item.title.toLowerCase();
+                    const content = (item.content + " " + item.excerpt).toLowerCase();
+                    const isShortTerm = query.length <= 3;
+                    
+                    // Whole word regex
+                    const wholeWordRegex = new RegExp(`\\b${query}\\b`, 'i');
+                    
+                    const titleWholeMatch = wholeWordRegex.test(title);
+                    const contentWholeMatch = wholeWordRegex.test(content);
+
+                    if (isShortTerm) {
+                        // For 3 letters or less, MUST be a whole word
+                        if (titleWholeMatch) score += 100;
+                        else if (contentWholeMatch) score += 20;
+                    } else {
+                        // Standard weighted scoring for longer terms
+                        if (titleWholeMatch) score += 100;
+                        else if (title.includes(query)) score += 40;
+                        
+                        if (contentWholeMatch) score += 20;
+                        else if (content.includes(query)) score += 1;
+                    }
+
+                    return { ...item, score };
+                })
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score);
+
+            renderResults(results, query);
+        });
+
+        // Highlighting helper
+        const highlight = (text, query) => {
+            if (!query) return text;
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+        };
+
+        const renderResults = (results, query) => {
+            const pageLang = document.documentElement.lang || 'es';
+            const i18n = {
+                es: { noResults: 'No se encontraron resultados para su búsqueda.', resultsCount: 'RESULTADO(S) ENCONTRADO(S)' },
+                en: { noResults: 'No results found for your search.', resultsCount: 'RESULT(S) FOUND' },
+                pt: { noResults: 'Nenhum resultado encontrado para sua busca.', resultsCount: 'RESULTADO(S) ENCONTRADO(S)' }
+            };
+            const labels = i18n[pageLang] || i18n.es;
+
+            if (results.length === 0) {
+                searchResults.innerHTML = `<div class="no-results">${labels.noResults}</div>`;
+                resultsCount.innerText = `0 ${labels.resultsCount}`;
+                return;
+            }
+
+            resultsCount.innerText = `${results.length} ${labels.resultsCount}`;
+
+            searchResults.innerHTML = results.map(res => `
+                <a href="${res.url}" class="search-result-item">
+                    <span class="result-category">${res.category || 'Insight'}</span>
+                    <h4>${highlight(res.title, query)}</h4>
+                    <p>${highlight(res.content.substring(0, 160) + '...', query)}</p>
+                </a>
+            `).join('');
+        }
     }
 
-    // Continuous Blog Carousel
     const track = document.querySelector('.insights-track');
     const prevBtn = document.querySelector('.prev-control');
     const nextBtn = document.querySelector('.next-control');
@@ -438,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Global Blog Image Zoom - Automatically attach to all images in .post-content
     const postContent = document.querySelector('.post-content');
     if (postContent) {
-        const images = postContent.querySelectorAll('img');
+        const images = postContent.querySelectorAll('img:not(.no-zoom)');
         images.forEach(img => {
             // Add zoom cursor
             img.style.cursor = 'zoom-in';
@@ -447,6 +556,33 @@ document.addEventListener('DOMContentLoaded', function () {
             img.addEventListener('click', function () {
                 openImageModal(img.src, img.alt);
             });
+        });
+    }
+
+    // Anchor links for headers (h1, h2, h3) in posts and solution pages
+    const mainContentArea = document.querySelector('.main-content');
+    if (mainContentArea) {
+        const headers = mainContentArea.querySelectorAll('h1, h2, h3');
+        headers.forEach(header => {
+            // Only add if it's a content header (has text and is not inside a modal)
+            if (header.innerText.trim() && !header.closest('.modal')) {
+                if (!header.id) {
+                    // Generate ID if it doesn't exist
+                    header.id = header.innerText.toLowerCase()
+                        .trim()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/\s+/g, '-');
+                }
+                
+                header.classList.add('has-anchor');
+                
+                const anchor = document.createElement('a');
+                anchor.className = 'header-anchor';
+                anchor.href = '#' + header.id;
+                anchor.innerHTML = '#'; // Professional hash icon
+                anchor.title = 'Enlace a esta sección';
+                header.appendChild(anchor);
+            }
         });
     }
 });

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,10 +29,10 @@
 
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Main Stylesheet with cache busting -->
+  <link rel="stylesheet" href="/assets/css/style.css?v=1777142654">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -53,41 +54,17 @@
   <script>
     window.pageMappings = {"home":{"es":"/","en":"/en/","pt":"/pt/"},"solutions":{"ebs":{"es":"/soluciones/modernizacion/","en":"/en/solutions/modernization/","pt":"/pt/solucoes/modernizacao/"}}};
   </script>
-  <!-- Inline CSS to mark absolute external links (computed server-side) -->
-  <style>
-    {
-      % assign _host=site.url | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first %
-    }
-
-    a[href^="http"]:not([href*=""])::after {
-      content: '';
-      display: inline-block;
-      width: 0.9em;
-      height: 0.9em;
-      margin-left: 0.4em;
-      vertical-align: -0.12em;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>');
-      background-repeat: no-repeat;
-      background-size: contain;
-      opacity: 0.85;
-      transition: opacity 0.15s ease, transform 0.15s ease;
-    }
-
-    a[href^="http"]:not([href*=""]):hover::after {
-      opacity: 1;
-      transform: translateX(2px);
-    }
-  </style>
 </head>
 
-<body>
+
+
+<body class="pt snap-scroll-page">
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-brand">
-        <a href="/pt/"
-          class="brand-link" aria-label="JAAB Tech home">
-          <img src="/assets/images/logotype-color-b.png" alt="JAAB Tech logo" class="nav-logo">
+        <a href="/pt/">
+          <img src="/assets/images/brand-logo-w.png" alt="JAAB Tech" class="logo-light">
         </a>
       </div>
 
@@ -101,6 +78,13 @@
           class="nav-link">Sobre Nós</a>
         <a href="/pt/#contact"
           class="nav-link">Contato</a>
+      </div>
+
+      <!-- Search Trigger -->
+      <div class="nav-search-trigger">
+        <button id="search-open" class="search-btn" aria-label="Abrir búsqueda">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
       </div>
 
       <!-- Language Switcher -->
@@ -129,647 +113,508 @@
 
 
 
-<!-- Hero Carousel Section -->
-<section class="hero-carousel-section" id="intro">
-  <div class="hero-carousel-container">
-    <div class="hero-slides">
-      <!-- Slide 1 -->
-      <div class="hero-slide active" style="background-image: url('/assets/images/hero-1.jpg');">
-        <div class="hero-slide-overlay"></div>
-        <div class="hero-content-box">
-          <h2 class="hero-title">Transformação Real</h2>
-          <p class="hero-description">A verdadeira transformação digital não é apenas uma palavra da moda; é a combinação estratégica de uma cultura e stack tecnológico adequados.</p>
-        </div>
+<!-- Hero Section (Typographic Bento) -->
+<header id="hero" class="hero-section">
+  <canvas id="hero-fabric-canvas" class="hero-fabric-canvas"></canvas>
+  <div class="container">
+    <div class="hero-executive-grid">
+      <!-- Left Column: Strategic Concepts -->
+      <div class="hero-nav-column">
+        <a href="#services" class="hero-concept-link">
+          <span class="concept-label">Transformação Real</span>
+          <span class="concept-title">Modernização tecnológica com impacto mensurável</span>
+        </a>
+        <a href="#about" class="hero-concept-link">
+          <span class="concept-label">O Fator Humano</span>
+          <span class="concept-title">Pessoas no centro de cada solução</span>
+        </a>
+        <a href="#solutions" class="hero-concept-link">
+          <span class="concept-label">Soluções Resilientes</span>
+          <span class="concept-title">Arquiteturas que evoluem com seu negócio</span>
+        </a>
       </div>
-      <!-- Slide 2 -->
-      <div class="hero-slide" style="background-image: url('/assets/images/hero-2.jpg');">
-        <div class="hero-slide-overlay"></div>
-        <div class="hero-content-box">
-          <h2 class="hero-title">O Fator Humano</h2>
-          <p class="hero-description">Mesmo com a IA remodelando o cenário, a experiência humana e a visão estratégica permanecem indispensáveis. A tecnologia é tão eficaz quanto os líderes e as pessoas que a implementam e gerenciam com sucesso.</p>
-        </div>
-      </div>
-      <!-- Slide 3 -->
-      <div class="hero-slide" style="background-image: url('/assets/images/hero-3.jpg');">
-        <div class="hero-slide-overlay"></div>
-        <div class="hero-content-box">
-          <h2 class="hero-title">Soluções Resilientes</h2>
-          <p class="hero-description">Aproveitamos o poder e a flexibilidade de soluções de código aberto, combinadas com ofertas comerciais, para implementar soluções empresariais escaláveis e seguras.</p>
-        </div>
-      </div>
-    </div>
 
-    <!-- Indicators -->
-    <div class="hero-indicators">
-      <span class="indicator active" onclick="jumpToSlide(0)"></span>
-      <span class="indicator" onclick="jumpToSlide(1)"></span>
-      <span class="indicator" onclick="jumpToSlide(2)"></span>
+      <!-- Main Area: The Mission -->
+      <div class="hero-mission-core">
+        <h1 class="hero-giant-phrase"><div class="hero-row">Evoluímos sua tecnologia.</div><div class="hero-row">Protegemos seu <span style="white-space: nowrap;">negócio<span class="design-square"></span></span></div></h1>
+      </div>
+
+    </div>
+  
+  <!-- Hero Rolling Insights (Infinite Carousel) - Decoupled from container for CSS Grid -->
+  <div class="hero-rolling-insights">
+    <div class="insights-header">
+      <div class="carousel-arrows">
+        <button class="carousel-arrow prev" id="prev-insight" aria-label="Anterior">←</button>
+        <button class="carousel-arrow next" id="next-insight" aria-label="Siguiente">→</button>
+      </div>
+      <a href="/blog/" class="view-all-blog">IR AL BLOG →</a>
+    </div>
+    <div class="insights-carousel-container">
+      <div class="insights-track">
+        
+        
+        <a href="/blog/fluxrig-public-release/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/fluxrig_logo.svg" alt="fluxrig: the showroom is now open" class="is-logo">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">fluxrig: the showroom is now open</h4>
+            <p class="insight-excerpt" style="display:none;">Announcing the first public release of fluxrig, the specialized patchbay for protocol orchestration and mission-critical business logic.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/fluxrig_logo.svg" data-title="fluxrig: the showroom is now open" data-excerpt="Announcing the first public release of fluxrig, the specialized patchbay for protocol orchestration and mission-critical business logic." data-url="/blog/fluxrig-public-release/" data-lang="en"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/fractional-cto/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/Gemini_Generated_Image_fractional_cto.png" alt="Fractional CTO: El liderazgo que su empresa necesita para escalar" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Fractional CTO: El liderazgo que su empresa necesita para escalar</h4>
+            <p class="insight-excerpt" style="display:none;">En el ecosistema empresarial actual, la tecnología ya no es un departamento de soporte; es el motor central del negocio. Sin embargo, muchas organizaciones enfrentan el desafío de alinear la visión estratégica con la ejecución técnica del equipo de desarrollo de manera eficiente.
+</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/Gemini_Generated_Image_fractional_cto.png" data-title="Fractional CTO: El liderazgo que su empresa necesita para escalar" data-excerpt="En el ecosistema empresarial actual, la tecnología ya no es un departamento de soporte; es el motor central del negocio. Sin embargo, muchas organizaciones enfrentan el desafío de alinear la visión..." data-url="/blog/fractional-cto/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/ia-factor-humano/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/ia-cobol-modernization-header.png" alt="IA y el factor humano: Desmitificando la modernización" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">IA y el factor humano: Desmitificando la modernización</h4>
+            <p class="insight-excerpt" style="display:none;">La reciente caída de IBM subraya una verdad crítica: el valor de la IA en la modernización es innegable, pero la guía experta es la que garantiza la continuidad del negocio.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/ia-cobol-modernization-header.png" data-title="IA y el factor humano: Desmitificando la modernización" data-excerpt="La reciente caída de IBM subraya una verdad crítica: el valor de la IA en la modernización es innegable, pero la guía experta es la que garantiza la continuidad del negocio." data-url="/blog/ia-factor-humano/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/obsolescencia-tecnologica/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/obsolescencia-tecnologica.png" alt="Obsolescencia Tecnológica: La amenaza silenciosa." class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Obsolescencia Tecnológica: La amenaza silenciosa.</h4>
+            <p class="insight-excerpt" style="display:none;">La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las estrategias para modernizar sistemas de misión crítica sin disrupciones.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/obsolescencia-tecnologica.png" data-title="Obsolescencia Tecnológica: La amenaza silenciosa." data-excerpt="La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las estrategias para modernizar sistemas de misión crítica sin disrupciones." data-url="/blog/obsolescencia-tecnologica/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/puntatech-el-interes-compuesto/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/puntatech_2026.jpg" alt="PuntaTech: El interés compuesto de las relaciones" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">PuntaTech: El interés compuesto de las relaciones</h4>
+            <p class="insight-excerpt" style="display:none;">Más allá del código, Punta Tech Week nos recuerda que la confianza se construye cara a cara. Reflexionamos sobre el 'interés compuesto' en las relaciones y cómo aplicamos esa misma visión a largo plazo en la modernización de sistemas críticos.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/puntatech_2026.jpg" data-title="PuntaTech: El interés compuesto de las relaciones" data-excerpt="Más allá del código, Punta Tech Week nos recuerda que la confianza se construye cara a cara. Reflexionamos sobre el 'interés compuesto' en las relaciones y cómo aplicamos esa misma visión a largo p..." data-url="/blog/puntatech-el-interes-compuesto/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/fluxrig-preview/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/Gemini_Generated_Image_stage.png" alt="fluxrig: Orquestando Protocolos" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">fluxrig: Orquestando Protocolos</h4>
+            <p class="insight-excerpt" style="display:none;">fluxrig ofrece orquestación distribuida y Open Source para tus operaciones de misión crítica, eliminando la deuda técnica de integraciones complejas.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/Gemini_Generated_Image_stage.png" data-title="fluxrig: Orquestando Protocolos" data-excerpt="fluxrig ofrece orquestación distribuida y Open Source para tus operaciones de misión crítica, eliminando la deuda técnica de integraciones complejas." data-url="/blog/fluxrig-preview/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/legacy-mfa/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/Gemini_Generated_Ilegacy_mfa.png" alt="MFA: Cuando la normativa choca con la realidad" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">MFA: Cuando la normativa choca con la realidad</h4>
+            <p class="insight-excerpt" style="display:none;">Uruguay se suma a la tendencia global de exigir Doble Factor de Autenticación por decreto en la administración pública. Analizamos el desafío técnico de blindar sistemas con décadas de antigüedad y las estrategias para lograrlo.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/Gemini_Generated_Ilegacy_mfa.png" data-title="MFA: Cuando la normativa choca con la realidad" data-excerpt="Uruguay se suma a la tendencia global de exigir Doble Factor de Autenticación por decreto en la administración pública. Analizamos el desafío técnico de blindar sistemas con décadas de antigüedad y..." data-url="/blog/legacy-mfa/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/puerta-abierta/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/kombi-legacy.jpg" alt="Legacy: puerta abierta al cibercrimen." class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Legacy: puerta abierta al cibercrimen.</h4>
+            <p class="insight-excerpt" style="display:none;">La obsolescencia tecnológica es una amenaza silenciosa: sistemas antiguos facilitan ciberataques y fallos graves. Modernizar es clave para proteger tu organización.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/kombi-legacy.jpg" data-title="Legacy: puerta abierta al cibercrimen." data-excerpt="La obsolescencia tecnológica es una amenaza silenciosa: sistemas antiguos facilitan ciberataques y fallos graves. Modernizar es clave para proteger tu organización." data-url="/blog/puerta-abierta/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/viejas-glorias/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/uruguay_1950.jpg" alt="Viejas Glorias" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Viejas Glorias</h4>
+            <p class="insight-excerpt" style="display:none;">Al igual que las viejas glorias futbolísticas de Uruguay, tecnologías legacy como OpenVMS y Solaris siguen siendo, en 2025, el pilar operativo de grandes empresas e instituciones.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/uruguay_1950.jpg" data-title="Viejas Glorias" data-excerpt="Al igual que las viejas glorias futbolísticas de Uruguay, tecnologías legacy como OpenVMS y Solaris siguen siendo, en 2025, el pilar operativo de grandes empresas e instituciones." data-url="/blog/viejas-glorias/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/valor-patrimonial/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/jaab_casaelglobo.jpg" alt="Valor patrimonial" class="">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Valor patrimonial</h4>
+            <p class="insight-excerpt" style="display:none;">JAAB participó en la inauguración de la renovada Casa El Globo teniendo la firme convicción de que renovaremos muchas plataformas tecnológicas en América Latina, respetando su valor patrimonial pero habilitando prestaciones como lo exigen los tiempos modernos.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/jaab_casaelglobo.jpg" data-title="Valor patrimonial" data-excerpt="JAAB participó en la inauguración de la renovada Casa El Globo teniendo la firme convicción de que renovaremos muchas plataformas tecnológicas en América Latina, respetando su valor patrimonial per..." data-url="/blog/valor-patrimonial/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        
+        <a href="/blog/fluxrig-public-release/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/fluxrig_logo.svg" alt="fluxrig: the showroom is now open">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">fluxrig: the showroom is now open</h4>
+            <p class="insight-excerpt" style="display:none;">Announcing the first public release of fluxrig, the specialized patchbay for protocol orchestration and mission-critical business logic.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/fluxrig_logo.svg" data-title="fluxrig: the showroom is now open" data-excerpt="Announcing the first public release of fluxrig, the specialized patchbay for protocol orchestration and mission-critical business logic." data-url="/blog/fluxrig-public-release/" data-lang="en"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/fractional-cto/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/Gemini_Generated_Image_fractional_cto.png" alt="Fractional CTO: El liderazgo que su empresa necesita para escalar">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Fractional CTO: El liderazgo que su empresa necesita para escalar</h4>
+            <p class="insight-excerpt" style="display:none;">En el ecosistema empresarial actual, la tecnología ya no es un departamento de soporte; es el motor central del negocio. Sin embargo, muchas organizaciones enfrentan el desafío de alinear la visión estratégica con la ejecución técnica del equipo de desarrollo de manera eficiente.
+</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/Gemini_Generated_Image_fractional_cto.png" data-title="Fractional CTO: El liderazgo que su empresa necesita para escalar" data-excerpt="En el ecosistema empresarial actual, la tecnología ya no es un departamento de soporte; es el motor central del negocio. Sin embargo, muchas organizaciones enfrentan el desafío de alinear la visión..." data-url="/blog/fractional-cto/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/ia-factor-humano/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/ia-cobol-modernization-header.png" alt="IA y el factor humano: Desmitificando la modernización">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">IA y el factor humano: Desmitificando la modernización</h4>
+            <p class="insight-excerpt" style="display:none;">La reciente caída de IBM subraya una verdad crítica: el valor de la IA en la modernización es innegable, pero la guía experta es la que garantiza la continuidad del negocio.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/ia-cobol-modernization-header.png" data-title="IA y el factor humano: Desmitificando la modernización" data-excerpt="La reciente caída de IBM subraya una verdad crítica: el valor de la IA en la modernización es innegable, pero la guía experta es la que garantiza la continuidad del negocio." data-url="/blog/ia-factor-humano/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/obsolescencia-tecnologica/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/obsolescencia-tecnologica.png" alt="Obsolescencia Tecnológica: La amenaza silenciosa.">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Obsolescencia Tecnológica: La amenaza silenciosa.</h4>
+            <p class="insight-excerpt" style="display:none;">La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las estrategias para modernizar sistemas de misión crítica sin disrupciones.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/obsolescencia-tecnologica.png" data-title="Obsolescencia Tecnológica: La amenaza silenciosa." data-excerpt="La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las estrategias para modernizar sistemas de misión crítica sin disrupciones." data-url="/blog/obsolescencia-tecnologica/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/puntatech-el-interes-compuesto/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/puntatech_2026.jpg" alt="PuntaTech: El interés compuesto de las relaciones">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">PuntaTech: El interés compuesto de las relaciones</h4>
+            <p class="insight-excerpt" style="display:none;">Más allá del código, Punta Tech Week nos recuerda que la confianza se construye cara a cara. Reflexionamos sobre el 'interés compuesto' en las relaciones y cómo aplicamos esa misma visión a largo plazo en la modernización de sistemas críticos.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/puntatech_2026.jpg" data-title="PuntaTech: El interés compuesto de las relaciones" data-excerpt="Más allá del código, Punta Tech Week nos recuerda que la confianza se construye cara a cara. Reflexionamos sobre el 'interés compuesto' en las relaciones y cómo aplicamos esa misma visión a largo p..." data-url="/blog/puntatech-el-interes-compuesto/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/fluxrig-preview/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/Gemini_Generated_Image_stage.png" alt="fluxrig: Orquestando Protocolos">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">fluxrig: Orquestando Protocolos</h4>
+            <p class="insight-excerpt" style="display:none;">fluxrig ofrece orquestación distribuida y Open Source para tus operaciones de misión crítica, eliminando la deuda técnica de integraciones complejas.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/Gemini_Generated_Image_stage.png" data-title="fluxrig: Orquestando Protocolos" data-excerpt="fluxrig ofrece orquestación distribuida y Open Source para tus operaciones de misión crítica, eliminando la deuda técnica de integraciones complejas." data-url="/blog/fluxrig-preview/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/legacy-mfa/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/Gemini_Generated_Ilegacy_mfa.png" alt="MFA: Cuando la normativa choca con la realidad">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">MFA: Cuando la normativa choca con la realidad</h4>
+            <p class="insight-excerpt" style="display:none;">Uruguay se suma a la tendencia global de exigir Doble Factor de Autenticación por decreto en la administración pública. Analizamos el desafío técnico de blindar sistemas con décadas de antigüedad y las estrategias para lograrlo.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/Gemini_Generated_Ilegacy_mfa.png" data-title="MFA: Cuando la normativa choca con la realidad" data-excerpt="Uruguay se suma a la tendencia global de exigir Doble Factor de Autenticación por decreto en la administración pública. Analizamos el desafío técnico de blindar sistemas con décadas de antigüedad y..." data-url="/blog/legacy-mfa/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/puerta-abierta/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/kombi-legacy.jpg" alt="Legacy: puerta abierta al cibercrimen.">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Legacy: puerta abierta al cibercrimen.</h4>
+            <p class="insight-excerpt" style="display:none;">La obsolescencia tecnológica es una amenaza silenciosa: sistemas antiguos facilitan ciberataques y fallos graves. Modernizar es clave para proteger tu organización.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/kombi-legacy.jpg" data-title="Legacy: puerta abierta al cibercrimen." data-excerpt="La obsolescencia tecnológica es una amenaza silenciosa: sistemas antiguos facilitan ciberataques y fallos graves. Modernizar es clave para proteger tu organización." data-url="/blog/puerta-abierta/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/viejas-glorias/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/uruguay_1950.jpg" alt="Viejas Glorias">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Viejas Glorias</h4>
+            <p class="insight-excerpt" style="display:none;">Al igual que las viejas glorias futbolísticas de Uruguay, tecnologías legacy como OpenVMS y Solaris siguen siendo, en 2025, el pilar operativo de grandes empresas e instituciones.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/uruguay_1950.jpg" data-title="Viejas Glorias" data-excerpt="Al igual que las viejas glorias futbolísticas de Uruguay, tecnologías legacy como OpenVMS y Solaris siguen siendo, en 2025, el pilar operativo de grandes empresas e instituciones." data-url="/blog/viejas-glorias/" data-lang="es"></div>
+          </div>
+        </a>
+        
+        <a href="/blog/valor-patrimonial/" class="insight-card">
+          <div class="insight-image">
+            <img src="/assets/images/blog/jaab_casaelglobo.jpg" alt="Valor patrimonial">
+          </div>
+          <div class="insight-content">
+            <h4 class="insight-title">Valor patrimonial</h4>
+            <p class="insight-excerpt" style="display:none;">JAAB participó en la inauguración de la renovada Casa El Globo teniendo la firme convicción de que renovaremos muchas plataformas tecnológicas en América Latina, respetando su valor patrimonial pero habilitando prestaciones como lo exigen los tiempos modernos.</p>
+            <div class="insight-meta-hidden" data-image="/assets/images/blog/jaab_casaelglobo.jpg" data-title="Valor patrimonial" data-excerpt="JAAB participó en la inauguración de la renovada Casa El Globo teniendo la firme convicción de que renovaremos muchas plataformas tecnológicas en América Latina, respetando su valor patrimonial per..." data-url="/blog/valor-patrimonial/" data-lang="es"></div>
+          </div>
+        </a>
+        
+      </div>
     </div>
   </div>
-</section>
+</header>
 
-<script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.hero-slide');
-  const indicators = document.querySelectorAll('.indicator');
-  const slideInterval = 5000; // 5 seconds
+<!-- Insight Quick-View Modal -->
+<div id="insight-modal" class="insight-modal" style="display: none;">
+  <div class="insight-modal-overlay"></div>
+  <div class="insight-modal-content">
+    <button class="insight-modal-close" id="close-insight-modal">&times;</button>
+    <div class="insight-modal-body">
+      <div class="insight-modal-image">
+        <img id="modal-insight-img" src="" alt="">
+      </div>
+      <div class="insight-modal-info">
+        <h2 id="modal-insight-title"></h2>
+        <!-- Translation links container -->
+        <div id="modal-insight-translate" class="modal-translate-container" style="display: none; margin-bottom: 1rem; align-items: center; gap: 0.5rem;">
+          <span class="translate-label" style="font-size: 0.85rem; color: rgba(255,255,255,0.4);">Traduzir:</span>
+          <div id="modal-translate-links" style="display: flex; gap: 0.5rem;"></div>
+        </div>
+        <p id="modal-insight-excerpt"></p>
+        <a id="modal-insight-link" href="" class="cta-link-brutal" data-label-en="READ FULL ARTICLE" data-label-pt="LER ARTIGO COMPLETO" data-label-es="LEER ARTÍCULO COMPLETO">LER ARTIGO COMPLETO</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-  function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(ind => ind.classList.remove('active'));
-
-    // Wrap around
-    if (index >= slides.length) currentSlide = 0;
-    else if (index < 0) currentSlide = slides.length - 1;
-    else currentSlide = index;
-
-    slides[currentSlide].classList.add('active');
-    indicators[currentSlide].classList.add('active');
-  }
-
-  function nextSlide() {
-    showSlide(currentSlide + 1);
-  }
-
-  function jumpToSlide(index) {
-    showSlide(index);
-    resetTimer();
-  }
-
-  let slideTimer = setInterval(nextSlide, slideInterval);
-
-  function resetTimer() {
-    clearInterval(slideTimer);
-    slideTimer = setInterval(nextSlide, slideInterval);
-  }
-</script>
-
-<!-- Services Section -->
+<!-- Concept 2: Capacity (Horizontal Accordion) -->
 <section id="services" class="services-section">
   <div class="container">
-    <div class="section-intro">
-      <h2 class="section-title">O Que Oferecemos</h2>
-      <p class="section-lead">
-        Serviços especializados para construir, evoluir e manter uma infraestrutura tecnológica resiliente.
-      </p>
-    </div>
-    <div class="services-grid">
-      
-      <div class="service-card" id="service1">
-        <div class="service-header" onclick="toggleService('content-service1')">
-          <div class="service-icon">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            
-          </div>
-          <h3 class="service-title">Modernização - Continuidade dos Negócios - Mitigação de Riscos</h3>
-          <div class="service-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
+    <div class="bento-accordion-stack">
+      <!-- Placeholder / Cover -->
+      <div class="bento-accordion-placeholder">
+        <div class="placeholder-content">
+          <h3>O Que Oferecemos</h3>
+          <p>Serviços especializados para construir, evoluir e manter uma infraestrutura tecnológica resiliente.</p>
         </div>
-        <div class="service-content" id="content-service1">
-          <div class="service-body">
-            <p>Identificamos e resolvemos riscos tecnológicos que ameaçam suas operações. <br><br>Da modernização de sistemas legados e migração para a nuvem ao planejamento personalizado, ajudamos você a construir um roteiro resiliente adaptado precisamente aos desafios do seu negócio.</p>
-            <a href="#contact" class="service-cta">
-              Proteja Seu Negócio →
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+        <div class="placeholder-image">
+          <img src="/assets/images/hero-3.jpg" alt="Strategic Capacity">
+        </div>
+      </div>
+
+      
+      <div class="bento-card" id="modernizacao">
+        <h3>Gestão de Riscos</h3>
+        <div class="service-description">
+          <p>Identificamos e resolvemos os riscos tecnológicos que ameaçam a viabilidade das suas operações de missão crítica.
+Transformamos a complexidade dos sistemas legacy em uma vantagem competitiva, projetando roteiros resilientes que fortalecem a continuidade operacional e eliminam a dívida técnica acumulada.</p>
+
+        </div>
+        <div class="card-footer">
+          <a href="#contact" class="cta-link-brutal">
+            Proteja Seu Negócio
+          </a>
         </div>
       </div>
       
-      <div class="service-card" id="service2">
-        <div class="service-header" onclick="toggleService('content-service2')">
-          <div class="service-icon">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            
-          </div>
-          <h3 class="service-title">Arquitetura, DevOps e Otimização de Dados</h3>
-          <div class="service-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
+      <div class="bento-card" id="lideranca-estrategica">
+        <h3>Fractional CTO</h3>
+        <div class="service-description">
+          <p>Liderança estratégica hands-on para alinhar a tecnologia com os objetivos financeiros e operacionais de sua empresa.
+Atuamos como seu parceiro executivo de confiança, garantindo que cada decisão tecnológica gere valor real de negócio e forneça soberania sobre seus próprios dados e processos.
+Trazemos a disciplina de sistemas de missão crítica para que suas decisões técnicas sejam escaláveis e seguras.</p>
+
         </div>
-        <div class="service-content" id="content-service2">
-          <div class="service-body">
-            <p>Fornecemos experiência prática para otimizar sua espinha dorsal de missão crítica. <br><br>Nossos serviços abrangem adoção de nuvem pública/privada, otimização de redes, práticas robustas de observabilidade e gerenciamento de dados em grande escala, garantindo controle completo e insights profundos para o negócio. <br><br>Nosso foco está em operações de missão crítica, transações financeiras e gestão empresarial.</p>
-            <a href="#contact" class="service-cta">
-              Otimize Seu Negócio →
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="service-card" id="service3">
-        <div class="service-header" onclick="toggleService('content-service3')">
-          <div class="service-icon">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-            </svg>
-            
-          </div>
-          <h3 class="service-title">Implementações Tecnológicas Estratégicas</h3>
-          <div class="service-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
-        </div>
-        <div class="service-content" id="content-service3">
-          <div class="service-body">
-            <p>Fornecemos ferramentas e serviços para executar a estratégia definida, aproveitando soluções comprovadas e parcerias estratégicas com líderes tecnológicos de classe mundial.</p>
-            <a href="#solutions" class="service-cta">
-              Explore Nossas Parcerias →
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+        <div class="card-footer">
+          <a href="/blog/fractional-cto/" class="cta-link-brutal">
+            Saiba mais sobre este papel
+          </a>
         </div>
       </div>
       
     </div>
-  </div>
   </div>
 </section>
 
-
-
-
-    
-
-    
-    
-    <!-- Insights Section (Carousel) -->
-    <section class="insights-section" id="insights">
-        <div class="container">
-            <div class="section-intro">
-                <h2 class="section-title">Últimos do blog</h2>
-            </div>
-            <div class="insights-link-top">
-                <a href="/blog/" class="link-inline">Ver todos os artigos</a>
-            </div>
-
-            <div class="insights-carousel-container">
-                <!-- Controls -->
-                <div class="carousel-control prev-control">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </div>
-                <div class="carousel-control next-control">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </div>
-
-                <div class="insights-track">
-                    
-                    <!-- Original Loop -->
-                    
-                    <a href="/blog/ia-factor-humano/" class="insight-card carousel-card side-card"
-                        style="--bg-image: url('/assets/images/ia-cobol-modernization-header.png'); text-decoration: none; color: inherit;">
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                27 Feb 2026 · 5 min
-                            </div>
-                            <h3 class="insight-title">IA y el factor humano: Desmitificando la modernización</h3>
-                            <p class="insight-excerpt">La reciente caída de IBM subraya una verdad crítica: el valor de la IA en la modernización es innegable, pero la guía...</p>
-                            <span class="insight-link">Ler artigo →</span>
-                        </div>
-                    </a>
-                    
-                    <a href="/blog/obsolescencia-tecnologica/" class="insight-card carousel-card side-card"
-                        style="--bg-image: url('/assets/images/obsolescencia-tecnologica.png'); text-decoration: none; color: inherit;">
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                27 Feb 2026 · 7 min
-                            </div>
-                            <h3 class="insight-title">Obsolescencia Tecnológica: La amenaza silenciosa.</h3>
-                            <p class="insight-excerpt">La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las est...</p>
-                            <span class="insight-link">Ler artigo →</span>
-                        </div>
-                    </a>
-                    
-                    <a href="/blog/puntatech-el-interes-compuesto/" class="insight-card carousel-card side-card"
-                        style="--bg-image: url('/assets/images/blog/puntatech_2026.jpg'); text-decoration: none; color: inherit;">
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                15 Jan 2026 · 4 min
-                            </div>
-                            <h3 class="insight-title">PuntaTech: El interés compuesto de las relaciones</h3>
-                            <p class="insight-excerpt">Más allá del código, Punta Tech Week nos recuerda que la confianza se construye cara a cara. Reflexionamos sobre el '...</p>
-                            <span class="insight-link">Ler artigo →</span>
-                        </div>
-                    </a>
-                    
-                    <!-- Duplicate Loop for Infinite Scroll -->
-                    
-                    <a href="/blog/ia-factor-humano/" class="insight-card carousel-card side-card"
-                        style="--bg-image: url('/assets/images/ia-cobol-modernization-header.png'); text-decoration: none; color: inherit;">
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                27 Feb 2026 · 5 min
-                            </div>
-                            <h3 class="insight-title">IA y el factor humano: Desmitificando la modernización</h3>
-                            <p class="insight-excerpt">La reciente caída de IBM subraya una verdad crítica: el valor de la IA en la modernización es innegable, pero la guía...</p>
-                            <span class="insight-link">Ler artigo →</span>
-                        </div>
-                    </a>
-                    
-                    <a href="/blog/obsolescencia-tecnologica/" class="insight-card carousel-card side-card"
-                        style="--bg-image: url('/assets/images/obsolescencia-tecnologica.png'); text-decoration: none; color: inherit;">
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                27 Feb 2026 · 7 min
-                            </div>
-                            <h3 class="insight-title">Obsolescencia Tecnológica: La amenaza silenciosa.</h3>
-                            <p class="insight-excerpt">La obsolescencia tecnológica es una amenaza latente en empresas de todos los sectores. Descubre los riesgos y las est...</p>
-                            <span class="insight-link">Ler artigo →</span>
-                        </div>
-                    </a>
-                    
-                    <a href="/blog/puntatech-el-interes-compuesto/" class="insight-card carousel-card side-card"
-                        style="--bg-image: url('/assets/images/blog/puntatech_2026.jpg'); text-decoration: none; color: inherit;">
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                15 Jan 2026 · 4 min
-                            </div>
-                            <h3 class="insight-title">PuntaTech: El interés compuesto de las relaciones</h3>
-                            <p class="insight-excerpt">Más allá del código, Punta Tech Week nos recuerda que la confianza se construye cara a cara. Reflexionamos sobre el '...</p>
-                            <span class="insight-link">Ler artigo →</span>
-                        </div>
-                    </a>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
-<!-- Solutions Section -->
+<!-- Concept 4: Platforms (Horizontal Accordion) -->
 <section id="solutions" class="solutions-section">
   <div class="container">
-    <div class="section-intro">
-      <h2 class="section-title">Soluções</h2>
-      <p class="section-lead">
-        Parcerias estratégicas com líderes tecnológicos.
-      </p>
-    </div>
+    <div class="bento-accordion-stack">
+      <!-- Placeholder / Cover -->
+      <div class="bento-accordion-placeholder">
+        <div class="placeholder-content">
+          <h3>Plataformas de Valor Estratégico</h3>
+          <p>Arquiteturas comprovadas para garantir o controle e a escalabilidade do negócio.</p>
+        </div>
+        <div class="placeholder-image">
+          <img src="/assets/images/hero-1.jpg" alt="Strategic Platforms">
+        </div>
+      </div>
 
-    <div class="solutions-grid">
       <!-- EBS Solution -->
-      <a href="/pt/solucoes/modernizacao/" class="solution-card-link">
-        <div class="solution-card">
-          <div class="solution-header">
-            <div class="solution-logo-wrapper">
-              <img src="/assets/images/ebs-logo.png" alt="EBS Logo" class="solution-logo">
-            </div>
-            <h3>Modernização de Tecnologia de Classe Mundial</h3>
-          </div>
-          <div class="solution-content">
-            <p>A EBS é um provedor líder em serviços e soluções para migração, modernização e otimização de ambientes legacy (Mainframe, COBOL, Natural, etc.).</p>
-            <p>A EBS fornece um caminho evolutivo para ambientes de tecnologia de missão crítica adaptado aos requisitos específicos do seu negócio, permitindo a evolução do negócio e reduzindo drasticamente o custo total de propriedade (TCO).</p>
-          </div>
-          <div class="solution-footer">
-            <span class="solution-cta">
-              Ver mais detalhes
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </span>
-          </div>
+      <div class="bento-card">
+        <div class="card-logo">
+          <img src="/assets/images/EBS_logo_high.png" alt="EBS Logo">
         </div>
-      </a>
+        <h3>Modernização Tech</h3>
+        <p style="opacity: 0.9;">A EBS é um provedor líder em serviços e soluções para migração, modernização e otimização de ambientes legacy (Mainframe, COBOL, Natural, etc.).</p>
+        <div class="card-footer">
+          <a href="/pt/solucoes/modernizacao/" class="cta-link-brutal">Ver mais detalhes</a>
+        </div>
+      </div>
 
-      <!-- FluxRig Solution -->
-      <a href="/fluxrig" class="solution-card-link">
-        <div class="solution-card">
-          <div class="solution-header">
-            <div class="solution-logo-wrapper">
-              <img src="/assets/images/favicon.svg" alt="JAAB Tech FluxRig"
-                class="solution-logo">
-            </div>
-            <h3>Orquestração e Conectividade Enterprise</h3>
-          </div>
-          <div class="solution-content">
-            <p><p><strong>fluxrig</strong> é nossa solução de código aberto para resolver desafios complexos de integração em ambientes IoT, industriais e financeiros.
+      <!-- FluxRig -->
+      <div class="bento-card bento-card-highlight">
+        <div class="card-logo">
+          <img src="/assets/images/fluxrig_logo.svg" alt="FluxRig Logo" style="filter: brightness(0) invert(1);">
+        </div>
+        <h3>Orquestração</h3>
+        <p style="opacity: 0.9;"><strong>fluxrig</strong> é nossa solução de código aberto para resolver desafios complexos de integração em ambientes IoT, industriais e financeiros.
 </p>
-            <p>Permite uma transição perfeita do legado para cloud-native, orquestrando protocolos e garantindo soberania de dados.</p>
-          </div>
-          <div class="solution-footer">
-            <span class="solution-cta">
-              Descobrir fluxrig
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- About Section -->
-<section id="about" class="about-section">
-  <div class="container">
-    <div class="section-intro">
-      <h2 class="section-title">Quem Somos</h2>
-      <p class="section-lead">Firma de consultoria tecnológica boutique focada em fornecer aconselhamento especializado e soluções comprovadas para mitigar riscos tecnológicos, garantir a continuidade dos negócios e otimizar operações na América Latina.</p>
-    </div>
-
-    <!-- Leadership Subsection -->
-    <div class="leadership-section">
-      <div class="team-profile">
-        <div class="team-photo">
-          <img src="/assets/images/2025_linkedin_profile.jpeg"
-            alt="Retrato de Andrés Antoniuk" loading="lazy">
-        </div>
-        <div class="team-details">
-          <h3 class="team-section-title">Liderança Experiente</h3>
-          
-          <p>A JAAB Tech é liderada por <a href="https://www.linkedin.com/in/andresantoniuk/" target="_blank" rel="noopener"
-              class="linkedin-name">Andrés Antoniuk<img src="/assets/images/linkedin.svg" alt="LinkedIn"
-                class="linkedin-icon"></a>, um profissional com mais de 25 anos de experiência em liderança corporativa e tecnológica, trazendo uma interessante combinação de estratégia de negócios, domínio de tecnologia e experiência prática nos desafios de nossos clientes.</p>
-          <p>Com um histórico comprovado tanto em startups quanto em ambientes corporativos de missão crítica, Andrés é um defensor da adoção de soluções de código aberto para atender necessidades de nível empresarial.</p>
+        <div class="card-footer">
+          <a href="https://fluxrig.org" class="cta-link-brutal">Descobrir fluxrig</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Concept 3: The Human Factor (Integrated Strategy & Leadership) -->
+<section id="about" class="interleaved-flow">
+  <div class="container">
+    <div class="bento-leadership-block">
+      <!-- Visual Side: The Group -->
+      <div class="group-image-side">
+        <img src="/assets/images/hero-2.jpg" alt="Team Synergy">
+      </div>
+
+      <!-- Narrative Side: The Strategy & Leadership -->
+      <div class="narrative-side">
+        <div class="human-factor-claim">
+          O Fator Humano
+        </div>
+        <p style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.4; color: var(--color-white); opacity: 0.9;">
+          A tecnologia é apenas uma ferramenta; o verdadeiro valor reside no critério humano que a dirige. Priorizamos o pragmatismo estratégico e a ética operacional para garantir que a inovação esteja sempre a serviço dos objetivos do negócio.
+        </p>
+        
+        <!-- Supporting Bio: Leadership -->
+        <div class="leadership-profile-snippet">
+          <div class="leadership-photo-small">
+            <img src="/assets/images/2025_linkedin_profile.jpeg" alt="Andrés Antoniuk">
+          </div>
+          <div class="leadership-bio">
+            <p style="margin-top: 0;">Andrés Antoniuk traz mais de 25 anos de carreira, tendo liderado áreas tecnológicas em ambientes corporativos de alta complexidade e escalado startups em diversos setores industriais. Esta visão dual permite-lhe combinar a disciplina dos sistemas de missão crítica com a agilidade necessária para a inovação de impacto.</p>
+            <a href="https://www.linkedin.com/in/andresantoniuk/" target="_blank" rel="noopener" class="linkedin-link-profile">
+              <img src="/assets/images/linkedin.svg" alt="LinkedIn">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section (Integrated Bento) -->
 <section id="contact" class="contact-section">
   <div class="container">
-    <!-- Contact Form Modal (Google Form) -->
-    <div id="contact-form-modal" class="contact-modal" style="display: none;">
-      <div class="contact-modal-overlay"></div>
-      <div class="contact-modal-content">
-        <button class="contact-modal-close" id="close-contact-modal" aria-label="Close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-        <div class="contact-form-frame">
-          <iframe src="https://forms.office.com/r/zjCDmQAmwY?embed=true" width="100%" height="100%" frameborder="0"
-            marginheight="0" marginwidth="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen
-            webkitallowfullscreen mozallowfullscreen msallowfullscreen loading="lazy">Loading…</iframe>
-        </div>
-      </div>
-    </div>
-
-    <!-- Calendly Modal (Initially Hidden) -->
-    <div id="calendly-modal" class="calendly-modal" style="display: none;">
-      <div class="calendly-modal-overlay"></div>
-      <div class="calendly-modal-content">
-        <button class="calendly-modal-close" id="close-calendly" aria-label="Close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-        <div class="calendly-wrapper">
-          <iframe src="https://calendly.com/antoniuk/initial-consultancy-contact" width="100%" height="100%"
-            frameborder="0" loading="lazy">
-          </iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-intro">
-      <h2 class="section-title">Pronto para transformar sua infraestrutura tecnológica?</h2>
-    </div>
-
-    <div class="contact-card">
-      <div class="contact-card-inner">
-        <!-- 1. Top Left: Links & Text -->
-        <div class="contact-info">
-          <p class="location-description">Estamos localizados no novo centro de negócios no centro histórico de Montevidéu.</p>
-          <div class="contact-meta">
-            <div class="contact-meta-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <div>
-                <p class="contact-meta-label"><a href="https://elglobodistrict.com/no18/" target="_blank" rel="noopener">No18 El Globo</a></p>
-                <p class="contact-meta-link">
-                  <a href="" target="_blank" rel="noopener">
-                    Rambla 25 de Agosto 292
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2"
-                      style="display:inline; vertical-align:middle; margin-left:4px;">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                </p>
-                <p class="contact-meta-value">11000 Montevidéu, Uruguai</p>
-              </div>
+    <div class="bento-contact-block">
+      <!-- Left: Narrative & Actions -->
+      <div class="contact-narrative">
+        <h2 class="contact-cta-title">Pronto para transformar sua infraestrutura tecnológica?</h2>
+        <p class="location-desc">Estamos localizados no novo centro de negócios no centro histórico de Montevidéu.</p>
+        
+        <div class="contact-details-list">
+          <div class="detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div>
+              <strong><a href="https://elglobodistrict.com/no18/" target="_blank" rel="noopener">No18 El Globo</a></strong>
+              <a href="https://www.google.com/maps/search/?api=1&query=Rambla+25+de+Agosto+292+Montevideo" target="_blank" rel="noopener" class="contact-map-link">
+                <span class="address-line">Rambla 25 de Agosto 292</span>
+                <span class="address-line">11000 Montevidéu, Uruguai</span>
+              </a>
             </div>
-            <div class="contact-meta-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                </path>
-              </svg>
-              <a href="tel:+59826236684" class="contact-meta-value">+598 2623 6684</a>
-            </div>
+          </div>
+          <div class="detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+59826236684">+598 2623 6684</a>
           </div>
         </div>
 
-        <!-- 2. Top Right: Building Image -->
-        <div class="contact-image">
-          <img src="/assets/images/FACHADA_EL_GLOBO.jpg" alt="No18 El Globo" loading="lazy">
-        </div>
-
-        <!-- 3. Bottom Left: Actions (Buttons) -->
-        <div class="contact-actions">
-          <button type="button" class="btn btn-primary btn-contact-grid" id="open-contact-modal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16v12H5.17L4 17.17V4z"></path>
-              <polyline points="22 6 12 13 2 6"></polyline>
-            </svg>
+        <div class="contact-button-group">
+          <button id="open-contact-modal" class="btn-bento-action">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.17L4 17.17V4z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
             Abrir formulário de contato
           </button>
-          <button type="button" class="btn btn-primary btn-contact-grid" id="schedule-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
+          <button id="schedule-btn" class="btn-bento-action">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             Agendar uma reunião
           </button>
         </div>
+      </div>
 
-        <!-- 4. Bottom Right: Google Map -->
-        <div class="contact-map">
-          
+      <!-- Right: Visuals -->
+      <div class="contact-visuals">
+        <!-- Building Image (Headquarters) -->
+        <div class="building-image">
+          <img src="/assets/images/FACHADA_EL_GLOBO.jpg" alt="No18 El Globo HQ">
+        </div>
+        
+        <!-- Interactive Map -->
+        <div class="map-snippet">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d817.1247069644534!2d-56.166156030436926!3d-34.90236249999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f80ffc63bf7d1%3A0x6b8e0e3f4d107d44!2sRambla%2025%20de%20Agosto%20de%201825%20292%2C%2011000%20Montevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1spt!2s!4v1733618400000!5m2!1spt!2s"
-            width="100%" height="240" style="border:0;" allowfullscreen="" loading="lazy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d817.1247069644534!2d-56.166156030436926!3d-34.90236249999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f80ffc63bf7d1%3A0x6b8e0e3f4d107d44!2sRambla%2025%20de%20Agosto%20de%201825%20292%2C%2011000%20Montevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1ses-419!2s!4v1733618400000!5m2!1ses-419!2s"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
-          
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Memberships & Affiliations Strip -->
-<section class="affiliations-strip">
-  <div class="container">
-    <div class="affiliations-content">
-      <div class="affiliations-logos">
-        <a href="https://cuti.org.uy/" target="_blank" rel="noopener" class="affiliation-link" title="Member of Cuti">
-          <img src="/assets/images/member-of-cuti.png" alt="Member of Cuti"
-            class="affiliation-logo">
-        </a>
-        <a href="https://uruguaytechnology.uy/" target="_blank" rel="noopener" class="affiliation-link"
-          title="Uruguay Technology">
-          <img src="/assets/images/uruguay-technology.png" alt="Uruguay Technology"
-            class="affiliation-logo">
-        </a>
-      </div>
-      <div class="affiliations-social">
-        <a class="twitter-timeline" data-height="400" href="https://twitter.com/JaabTech?ref_src=twsrc%5Etfw">Tweets by
-          JaabTech</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
+<!-- Modals (Outside of Snap Flow) -->
+<div id="contact-form-modal" class="contact-modal" style="display: none;">
+  <div class="contact-modal-overlay"></div>
+  <div class="contact-modal-content">
+    <button class="contact-modal-close" id="close-contact-modal" aria-label="Close">&times;</button>
+    <div class="contact-form-frame">
+      <iframe src="https://forms.office.com/r/zjCDmQAmwY?embed=true" width="100%" height="100%" frameborder="0">Loading…</iframe>
     </div>
   </div>
-</section>
+</div>
+
+<div id="calendly-modal" class="calendly-modal" style="display: none;">
+  <div class="calendly-modal-overlay"></div>
+  <div class="calendly-modal-content">
+    <button class="calendly-modal-close" id="close-calendly" aria-label="Close">&times;</button>
+    <div class="calendly-wrapper">
+      <iframe src="https://calendly.com/antoniuk/initial-consultancy-contact" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
 
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="footer-brand">
-            <img src="/assets/images/favicon.svg" alt="JAAB Tech" class="footer-isotype">
-          </div>
-          <div class="footer-section">
-            <h4>
-              <a href="/pt/#contact"
-                class="footer-contact-link">
-                Contato
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-            </h4>
-            <p class="footer-schedule-link">
-              <a href="/pt/#contact"
-                onclick="event.preventDefault(); window.location.href='/pt/#contact'; setTimeout(function(){ if(typeof toggleCalendly === 'function') toggleCalendly(); }, 500);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                Agendar reunião >
-              </a>
-            </p>
-            <p>No18 El Globo - Rambla 25 de Agosto 292, 11000 Montevidéu, Uruguai.</p>
-            
-            <p>
-              <a href="tel:+59826236684"
-                class="footer-phone">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z">
-                  </path>
-                </svg>
-                +598 2623 6684
-              </a>
-            </p>
-            
-          </div>
-        </div>
-
-        <div class="footer-right">
-          <div class="social-links">
-            <a href="/blog/" class="blog-link">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-              </svg>
-              <span>Blog</span>
-            </a>
-            <a href="https://x.com/JaabTech" target="_blank" rel="noopener" class="x-link" title="Síguenos en X">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/jaab-tech" target="_blank" rel="noopener" class="linkedin-link"
-              title="Conéctate en LinkedIn">
-              <img src="/assets/images/linkedin.svg" alt="LinkedIn" class="linkedin-logo">
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>
-          &copy; 2026 JAAB TECH SAS. Todos os direitos reservados.
-          <span style="margin: 0 0.5rem;">|</span>
-          <a href="/privacy/" style="color: var(--color-text-muted); text-decoration: underline;">Política de Privacidade</a>
-          <span style="margin: 0 0.5rem;">|</span>
-          <a href="#" id="credits-link"
-            style="color: var(--color-text-muted); text-decoration: underline; cursor: pointer;">Créditos</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+  <!-- Modals & Utilities -->
 
   <!-- Credits Modal -->
   <div id="credits-modal" class="credits-modal" style="display: none;">
@@ -925,13 +770,16 @@
     </div>
   </div>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="back-to-top" aria-label="Volver arriba" title="Volver arriba">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
+  <!-- Slide Navigator (PowerPoint Style) -->
+  <div class="slide-navigator">
+    <button id="slide-prev" class="nav-btn" aria-label="Previous Slide" onclick="window.handleSlidePrev(event)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+    <button id="slide-next" class="nav-btn" aria-label="Next Slide" onclick="window.handleSlideNext(event)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+  </div>
+</div>
 
   <!-- Image Zoom Modal (for Blog) -->
   <div id="image-zoom-modal" class="image-zoom-modal">
@@ -943,8 +791,574 @@
     </div>
   </div>
 
+  <!-- Main White Footer (Fixed Strip) -->
+  <footer id="main-footer" class="main-footer">
+    <!-- Mini Strip (Always Visible at Top when Collapsed) -->
+    <div class="footer-mini-strip" onclick="this.parentElement.classList.toggle('is-expanded')">
+      <div class="container">
+        <div class="footer-bottom-content">
+          <div class="copyright-text">
+            &copy; 2026 JAAB TECH SAS.
+          </div>
+          
+          <div class="footer-persistent-links">
+            <a href="/blog/" class="mini-btn-link">Blog</a>
+            <span class="sep">|</span>
+            <a href="https://x.com/jaabtech" target="_blank" rel="noopener" class="mini-social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/jaab-tech/" target="_blank" rel="noopener" class="mini-social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <span class="sep">|</span>
+            <a href="/privacy/">Privacidade</a>
+            <span class="sep">|</span>
+            <a href="#" id="open-credits">Créditos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-full-wrap">
+      <div class="container">
+        <div class="footer-grid-4col">
+          <!-- Col 1: Brand -->
+          <div class="footer-col col-brand">
+            <img src="/assets/images/footer-logo-color.png" alt="JAAB Tech" class="footer-logo-color">
+          </div>
+
+          <!-- Col 2: Contact -->
+          <div class="footer-col col-contact">
+            <div class="contact-line">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <strong>No18 El Globo</strong>
+            </div>
+            <div class="contact-line-sub">Rambla 25 de Agosto 292, Montevideo, Uruguay</div>
+            <div class="contact-line-sub"><a href="tel:+59826236684">+598 2623 6684</a></div>
+          </div>
+
+          <!-- Col 3: Empty space (previously col-links) -->
+          <div class="footer-col col-spacer"></div>
+
+          <!-- Col 4: Affiliations -->
+          <div class="footer-col col-affiliations">
+            <div class="affiliations-logos-row">
+              <a href="https://www.cuti.org.uy/" target="_blank" rel="noopener">
+                <img src="/assets/images/member-of-cuti.png" alt="Cuti Member">
+              </a>
+              <a href="https://uruguayinnovationhub.uy/" target="_blank" rel="noopener">
+                <img src="/assets/images/uruguay-technology.png" alt="UUI Hub">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
+  <!-- Search Overlay -->
+  <div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-input">
+    <div class="search-modal-backdrop"></div>
+    <div class="search-modal-container">
+      <div class="search-modal-header">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" placeholder="Buscar conhecimentos, soluções..." autocomplete="off">
+        </div>
+        <button id="search-close" class="search-close-btn" aria-label="Cerrar búsqueda">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="search-results-meta">
+        <span id="results-count"></span>
+      </div>
+      <div id="search-results" class="search-results-list">
+        <!-- Results will be injected here -->
+      </div>
+      <div class="search-modal-footer">
+        <p class="search-hint">Pressione ESC para fechar</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PowerPoint Style Slide Navigation -->
+  <script>
+    (function() {
+      const isSnapPage = document.body.classList.contains('snap-scroll-page');
+      
+      // Global Handlers for the buttons (defined on window for inline onclick)
+      window.handleSlidePrev = function(e) {
+        if (e) e.preventDefault();
+        if (isSnapPage && typeof window.scrollToSection === 'function') {
+          window.scrollToSection(window.currentSectionIndex - 1);
+        } else {
+          // In some layouts (standard pages), body is the scroll container
+          document.body.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      window.handleSlideNext = function(e) {
+        if (e) e.preventDefault();
+        if (isSnapPage && typeof window.scrollToSection === 'function') {
+          window.scrollToSection(window.currentSectionIndex + 1);
+        } else {
+          // In some layouts (standard pages), body is the scroll container
+          const target = document.body.scrollHeight || document.documentElement.scrollHeight;
+          document.body.scrollTo({ top: target, behavior: 'smooth' });
+          window.scrollTo({ top: target, behavior: 'smooth' });
+        }
+      };
+
+      if (!isSnapPage) return;
+
+      // Snap Scroll Logic (Homepage only)
+      const sections = document.querySelectorAll('section, header');
+      const footer = document.querySelector('.main-footer');
+      window.currentSectionIndex = 0;
+      let isTransitioning = false;
+      let lastScrollTime = 0;
+
+      window.scrollToSection = function(index) {
+        // Force footer expansion if past sections, bypassing isTransitioning
+        if (index >= sections.length) {
+          footer.classList.add('is-expanded');
+          window.currentSectionIndex = sections.length; 
+          return;
+        }
+        
+        if (index < 0 || isTransitioning) return;
+        
+        isTransitioning = true;
+        window.currentSectionIndex = index;
+        
+        sections[index].scrollIntoView({ behavior: 'smooth' });
+
+        // Collapse footer if we scroll back up from virtual footer state
+        footer.classList.remove('is-expanded');
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 1200); 
+      }
+
+      window.addEventListener('wheel', (e) => {
+        // Skip snap scroll if on mobile or short desktop window (allow free scrolling)
+        if (window.innerWidth <= 768 || window.innerHeight < 700) return;
+
+        const now = Date.now();
+        
+        // Skip snap scroll if any modal is open
+        const isModalOpen = Array.from(document.querySelectorAll('.credits-modal, .contact-modal, .calendly-modal, .image-zoom-modal, .search-modal'))
+          .some(m => window.getComputedStyle(m).display !== 'none');
+        
+        if (isModalOpen) return; 
+
+        const isFooterOpen = footer.classList.contains('is-expanded');
+
+        if ((isTransitioning || now - lastScrollTime < 800) && !(e.deltaY < 0 && isFooterOpen)) {
+          e.preventDefault();
+          return;
+        }
+
+        // Check for internal scrollable content
+        if (currentSectionIndex < sections.length) {
+          const activeSection = sections[currentSectionIndex];
+          const scrollable = activeSection.querySelector('.bento-accordion-stack, .contact-narrative, .narrative-side');
+          
+          if (scrollable) {
+            const isAtTop = scrollable.scrollTop <= 0;
+            const isAtBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 1;
+            
+            if (e.deltaY > 0 && !isAtBottom) return; // Allow internal scroll down
+            if (e.deltaY < 0 && !isAtTop) return;    // Allow internal scroll up
+          }
+        }
+
+        e.preventDefault();
+        if (Math.abs(e.deltaY) > 20) {
+          lastScrollTime = now;
+          
+          if (e.deltaY > 0) {
+            // Scroll Down
+            if (window.currentSectionIndex < sections.length) {
+              window.scrollToSection(window.currentSectionIndex + 1);
+            }
+          } else {
+            // Scroll Up
+            if (window.currentSectionIndex > sections.length - 1 && footer.classList.contains('is-expanded')) {
+              // We are at virtual footer, scroll back to last section
+              window.scrollToSection(sections.length - 1);
+            } else {
+              window.scrollToSection(window.currentSectionIndex - 1);
+            }
+          }
+        }
+      }, { passive: false });
+
+      // Slide Navigator Buttons (Now using global window handlers)
+      document.getElementById('slide-prev')?.addEventListener('click', window.handleSlidePrev);
+      document.getElementById('slide-next')?.addEventListener('click', window.handleSlideNext);
+
+      // Handle internal anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            e.preventDefault();
+            const index = Array.from(sections).indexOf(targetSection);
+            if (index !== -1) window.scrollToSection(index);
+          }
+        });
+      });
+
+      // Handle touch swipes
+      let touchStartY = 0;
+      window.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY, { passive: true });
+      window.addEventListener('touchend', e => {
+        // Skip snap scroll if on mobile or short desktop window (allow free scrolling)
+        if (window.innerWidth <= 768 || window.innerHeight < 700) return;
+
+        // Skip snap scroll if any modal is open
+        const isModalOpen = Array.from(document.querySelectorAll('.credits-modal, .contact-modal, .calendly-modal, .image-zoom-modal, .search-modal'))
+          .some(m => window.getComputedStyle(m).display !== 'none');
+        if (isModalOpen) return;
+
+        const touchEndY = e.changedTouches[0].clientY;
+        const delta = touchStartY - touchEndY;
+        if (Math.abs(delta) > 50 && !isTransitioning) {
+          if (delta > 0) window.scrollToSection(window.currentSectionIndex + 1);
+          else window.scrollToSection(window.currentSectionIndex - 1);
+        }
+      }, { passive: true });
+      
+      // Sync initial position on refresh
+      window.addEventListener('load', () => {
+        const hash = window.location.hash;
+        if (hash) {
+          const target = document.querySelector(hash);
+          if (target) {
+            sections.forEach((s, i) => {
+              if (s === target) window.currentSectionIndex = i;
+            });
+          }
+        }
+      });
+
+      // Mobile Footer Expansion (Bottom Detection)
+      window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 768) {
+          const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
+          if (isAtBottom) {
+            footer.classList.add('is-expanded');
+          } else {
+            footer.classList.remove('is-expanded');
+          }
+        }
+      }, { passive: true });
+
+      // Handle Credits Modal
+      const openCreditsBtn = document.getElementById('open-credits');
+      const creditsModal = document.getElementById('credits-modal');
+      const closeCreditsBtn = document.getElementById('close-credits');
+
+      if (openCreditsBtn && creditsModal) {
+        openCreditsBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Collapse footer when modal opens
+          footer.classList.remove('is-expanded');
+          if (window.currentSectionIndex === sections.length) {
+            window.currentSectionIndex = sections.length - 1; // Return to Contact state
+          }
+          
+          creditsModal.style.display = 'flex';
+          creditsModal.classList.add('is-visible');
+          document.body.style.overflow = 'hidden'; // Prevent background scroll
+        });
+      }
+
+      // Insight Modal & Carousel Controls
+      const insightModal = document.getElementById('insight-modal');
+      const closeInsightBtn = document.getElementById('close-insight-modal');
+      const insightCards = document.querySelectorAll('.insight-card');
+      const insightsTrack = document.querySelector('.insights-track');
+      const prevInsightBtn = document.getElementById('prev-insight');
+      const nextInsightBtn = document.getElementById('next-insight');
+
+      if (insightModal && closeInsightBtn) {
+        // Function to open modal with data
+        const openInsightModal = (data) => {
+          const modalImg = document.getElementById('modal-insight-img');
+          modalImg.src = data.image;
+          
+          // Add is-logo class for SVG logos to ensure they fit correctly
+          if (data.image && data.image.toLowerCase().endsWith('.svg')) {
+            modalImg.classList.add('is-logo');
+          } else {
+            modalImg.classList.remove('is-logo');
+          }
+
+          document.getElementById('modal-insight-title').innerText = data.title;
+          document.getElementById('modal-insight-excerpt').innerText = data.excerpt;
+          
+          const modalLink = document.getElementById('modal-insight-link');
+          modalLink.href = data.url;
+
+          // Language Awareness: Localize CTA and add translation links
+          const currentLang = document.documentElement.lang || 'es';
+          modalLink.innerText = modalLink.getAttribute(`data-label-${currentLang}`) || 'LEER ARTÍCULO COMPLETO';
+
+          // Automated translation links within modal
+          const translateContainer = document.getElementById('modal-insight-translate');
+          const translateLinks = document.getElementById('modal-translate-links');
+          
+          if (currentLang.split('-')[0] !== data.lang.split('-')[0] && translateContainer && translateLinks) {
+            translateContainer.style.display = 'flex';
+            const siteUrl = window.location.origin;
+            const fullUrl = siteUrl + data.url;
+            const postLangCode = data.lang.split('-')[0];
+            
+            const supported = [
+              { code: 'es', flag: '🇪🇸', label: 'Español' },
+              { code: 'en', flag: '🇬🇧', label: 'English' },
+              { code: 'pt', flag: '🇧🇷', label: 'Português' }
+            ];
+
+            let linksHtml = '';
+            supported.forEach(target => {
+              if (target.code !== postLangCode) {
+                linksHtml += `<a href="https://translate.google.com/translate?sl=${postLangCode}&tl=${target.code}&u=${encodeURIComponent(fullUrl)}" target="_blank" rel="noopener" style="text-decoration:none; font-size:1.25rem;" title="${target.label}">${target.flag}</a>`;
+              }
+            });
+            translateLinks.innerHTML = linksHtml;
+          } else if (translateContainer) {
+            translateContainer.style.display = 'none';
+          }
+          
+          insightModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          if (insightsTrack) {
+            insightsTrack.style.animationPlayState = 'paused';
+          }
+        };
+
+        const closeInsightModal = () => {
+          insightModal.style.display = 'none';
+          document.body.style.overflow = '';
+          if (insightsTrack) {
+            insightsTrack.style.animationPlayState = 'running';
+          }
+        };
+
+        // Attach to cards (Trigger on hover as requested)
+        insightCards.forEach(card => {
+          let hoverTimeout;
+          
+          card.addEventListener('mouseenter', () => {
+            hoverTimeout = setTimeout(() => {
+              const meta = card.querySelector('.insight-meta-hidden');
+              const data = {
+                image: meta.dataset.image,
+                title: meta.dataset.title,
+                excerpt: meta.dataset.excerpt,
+                url: meta.dataset.url,
+                lang: meta.dataset.lang
+              };
+              openInsightModal(data);
+            }, 300); // 300ms delay to ensure intent
+          });
+
+          card.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+          });
+
+          card.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearTimeout(hoverTimeout); // Cancel hover trigger if clicked
+            const meta = card.querySelector('.insight-meta-hidden');
+            const data = {
+              image: meta.dataset.image,
+              title: meta.dataset.title,
+              excerpt: meta.dataset.excerpt,
+              url: meta.dataset.url,
+              lang: meta.dataset.lang
+            };
+            openInsightModal(data);
+          });
+        });
+
+        closeInsightBtn.addEventListener('click', closeInsightModal);
+        insightModal.querySelector('.insight-modal-overlay').addEventListener('click', closeInsightModal);
+
+        // Auto-close when leaving the modal content (as requested)
+        const modalContent = insightModal.querySelector('.insight-modal-content');
+        modalContent.addEventListener('mouseleave', () => {
+          closeInsightModal();
+        });
+      }
+
+      // Carousel Direction Controls
+      if (prevInsightBtn && nextInsightBtn && insightsTrack) {
+        prevInsightBtn.addEventListener('click', () => {
+          insightsTrack.classList.remove('reverse');
+        });
+        nextInsightBtn.addEventListener('click', () => {
+          insightsTrack.classList.add('reverse');
+        });
+      }
+
+      if (closeCreditsBtn && creditsModal) {
+        closeCreditsBtn.addEventListener('click', () => {
+          creditsModal.style.display = 'none';
+          creditsModal.classList.remove('is-visible');
+          document.body.style.overflow = ''; // Restore background scroll
+        });
+      }
+
+      // Data Fabric Animation (Hero)
+      const fabricCanvas = document.getElementById('hero-fabric-canvas');
+      if (fabricCanvas) {
+        const ctx = fabricCanvas.getContext('2d');
+        let width, height;
+        const dots = [];
+        const dotCount = 40;
+        const gridSize = 120;
+
+        function resize() {
+          width = fabricCanvas.width = fabricCanvas.offsetWidth;
+          height = fabricCanvas.height = fabricCanvas.offsetHeight;
+        }
+
+        class FabricPoint {
+          constructor() {
+            this.init();
+          }
+          init() {
+            // Align to grid initially
+            this.gx = Math.floor(Math.random() * (width / gridSize));
+            this.gy = Math.floor(Math.random() * (height / gridSize));
+            this.x = this.gx * gridSize;
+            this.y = this.gy * gridSize;
+            this.targetX = this.x;
+            this.targetY = this.y;
+            this.speed = 0.5 + Math.random() * 0.5;
+            this.alpha = 0;
+            this.maxAlpha = 0.3 + Math.random() * 0.4;
+          }
+          update() {
+            if (Math.abs(this.x - this.targetX) < 1 && Math.abs(this.y - this.targetY) < 1) {
+              // Pick new neighbor on grid
+              const dir = Math.floor(Math.random() * 4);
+              if (dir === 0) this.targetX += gridSize;
+              else if (dir === 1) this.targetX -= gridSize;
+              else if (dir === 2) this.targetY += gridSize;
+              else if (dir === 3) this.targetY -= gridSize;
+              
+              // Bounds check
+              if (this.targetX < 0 || this.targetX > width) this.targetX = this.x;
+              if (this.targetY < 0 || this.targetY > height) this.targetY = this.y;
+            }
+            
+            this.x += (this.targetX - this.x) * 0.02 * this.speed;
+            this.y += (this.targetY - this.y) * 0.02 * this.speed;
+            
+            if (this.alpha < this.maxAlpha) this.alpha += 0.005;
+          }
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+            ctx.fill();
+            
+            // Subtle pulse
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha * 0.3})`;
+            ctx.stroke();
+          }
+        }
+
+        function initFabric() {
+          resize();
+          for (let i = 0; i < dotCount; i++) dots.push(new FabricPoint());
+        }
+
+        function animateFabric() {
+          ctx.clearRect(0, 0, width, height);
+          
+          // Brighter Static Grid
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+          ctx.lineWidth = 1;
+          for (let x = 0; x <= width; x += gridSize) {
+            ctx.moveTo(x, 0); ctx.lineTo(x, height);
+          }
+          for (let y = 0; y <= height; y += gridSize) {
+            ctx.moveTo(0, y); ctx.lineTo(width, y);
+          }
+          ctx.stroke();
+
+          dots.forEach(dot => {
+            dot.update();
+            // Brighter dots with glow
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${dot.alpha})`;
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${dot.alpha * 0.3})`;
+            ctx.fill();
+          });
+
+          requestAnimationFrame(animateFabric);
+        }
+
+        // Initialize after a small delay to ensure dimensions are ready
+        setTimeout(() => {
+          initFabric();
+          animateFabric();
+        }, 100);
+
+        window.addEventListener('resize', () => { 
+          resize(); 
+          dots.length = 0; 
+          for (let i = 0; i < dotCount; i++) dots.push(new FabricPoint());
+        });
+      }
+
+      // Global Click listener to minimize footer or mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        // 1. Handle Footer minimization
+        if (footer && footer.classList.contains('is-expanded')) {
+          // Only close if clicking outside the footer
+          if (!footer.contains(e.target)) {
+            footer.classList.remove('is-expanded');
+            // Sync currentSectionIndex if we were in the virtual footer state
+            if (window.innerWidth > 768 && window.currentSectionIndex === sections.length) {
+              window.currentSectionIndex = sections.length - 1;
+            }
+          }
+        }
+        
+        // 2. Handle Mobile Menu minimization
+        const navbar = document.querySelector('.navbar');
+        if (navbar && navbar.classList.contains('mobile-menu-open')) {
+          const mobileToggle = document.querySelector('.mobile-menu-toggle');
+          // Only close if clicking outside the navbar (which includes the menu)
+          if (!navbar.contains(e.target) && (!mobileToggle || !mobileToggle.contains(e.target))) {
+            navbar.classList.remove('mobile-menu-open');
+            if (mobileToggle) mobileToggle.classList.remove('active');
+          }
+        }
+      });
+    })();
+
+  </script>
 </body>
 
 </html>
